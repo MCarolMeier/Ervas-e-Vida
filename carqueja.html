@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guia completo da planta medicinal Carqueja — origem, receitas, plantio e benefícios no Rio Grande do Sul." />
+  <title>Carqueja — Planta Medicinal</title>
+
+  <!-- Google Fonts: Playfair Display (display) + Inter (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Folha de estilos principal -->
+  <link rel="stylesheet" href="CSS/plantasstyle.css" />
+</head>
+<body>
+    <!-- plantaspage.js movido para o fim do body (ver antes de </body>) —
+         scripts no <head>/topo do body bloqueiam a renderização e tentam
+         rodar antes que os elementos do HTML existam -->
+
+ <header role="banner">
+    <div class="header-inner">
+      <!-- ---- Linha superior: Logo + Busca + Ações ---- -->
+      <div class="header-top">
+        <!-- Logo com link para a home -->
+        <a class="logo" href="index.html" aria-label="Ervas & Vida — Página inicial">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name">Ervas &amp; Vida</span>
+            <span class="logo-tagline">Plantas Medicinais</span>
+          </span>
+        </a>
+        <!-- Barra de pesquisa por texto -->
+        <!-- role="search" marca a região como área de busca para leitores de tela -->
+        <div class="search-wrapper" role="search">
+          <!-- Label visualmente oculta, mas lida por leitores de tela -->
+          <label class="visually-hidden" for="search-input" id="search-label">
+            Pesquisar plantas medicinais
+          </label>
+          <div class="search-input-group">
+            <!-- Ícone decorativo (aria-hidden pois é puramente visual) -->
+            <span class="search-icon" aria-hidden="true">
+              <img class="icon" src="ING/icon/315884_gear-icon.svg" alt="Pesquisar" />
+            </span>
+            <input
+              type="search"
+              id="search-input"
+              name="q"
+              placeholder="Pesquisar plantas, usos, propriedades…"
+              autocomplete="off"
+              aria-labelledby="search-label"
+              aria-controls="plants-grid"
+              aria-describedby="search-status"
+            />
+            <button id="search-btn" type="button" aria-label="Executar busca">
+              Buscar
+            </button>
+          </div>
+          <!-- Região live: anuncia resultados para leitores de tela -->
+          <span id="search-status" aria-live="polite" aria-atomic="true" class="visually-hidden"></span>
+        </div>
+        <!-- Botões de ação rápida (favoritos, conta, menu) -->
+        <div class="header-actions" role="group" aria-label="Ações do usuário">
+          <a href="perfil.html" class="icon-btn" aria-label="Minha conta" title="Minha conta">
+            <img class="icon" src="ING/icon/315892_user-profile-icon.svg" alt="Minha conta" />
+          </a>
+        </div>
+      </div><!-- /header-top -->
+      
+    </div><!-- /header-inner -->
+  </header><!-- /header -->
+
+  <main>
+
+    <!-- =============================================
+         HERO — Modelo 3D + nome da planta
+    ============================================= -->
+    <section class="hero-3d" aria-label="Visualização e identificação da planta">
+
+      <!-- Container do canvas 3D — id usado por plantas3D.js -->
+      <div id="container3D" class="container-3d" aria-label="Modelo 3D interativo da Carqueja. Arraste para girar."></div>
+
+      <!-- Crachá de identificação sobre o canvas -->
+      <div class="hero-badge">
+        <p class="eyebrow">Planta Medicinal</p>
+        <h1 id="hero-title">Carqueja</h1>
+        <p class="hero-sci"><em>Baccharis trimera</em></p>
+        <p class="hero-sub">Rio Grande do Sul · Nativa</p>
+      </div>
+
+      <!-- Indicador de scroll -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-dot"></span>
+        <span class="scroll-label">Role para explorar</span>
+      </div>
+    </section>
+
+    <!-- =============================================
+         IDENTIFICAÇÃO — nomes, origem, região
+    ============================================= -->
+    <section id="identificacao" class="section" aria-labelledby="id-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">01 — Identificação</span>
+          <h2 id="id-title">Quem é a Carqueja?</h2>
+        </header>
+
+        <div class="cards-grid">
+
+          <!-- Card: Nomes -->
+          <article class="card card--dark" aria-label="Nomes da planta">
+            <span class="card-icon" aria-hidden="true">🌿</span>
+            <h3>Nomes</h3>
+            <dl class="info-list">
+              <dt>Nome popular</dt>
+              <dd>Carqueja</dd>
+              <dt>Nome científico</dt>
+              <dd><em>Baccharis trimera</em></dd>
+              <dt>Família</dt>
+              <dd>Asteraceae</dd>
+            </dl>
+          </article>
+
+          <!-- Card: Origem e distribuição -->
+          <article class="card card--dark" aria-label="Origem e distribuição">
+            <span class="card-icon" aria-hidden="true">🌍</span>
+            <h3>Origem</h3>
+            <dl class="info-list">
+              <dt>Natural do RS?</dt>
+              <dd><strong class="badge-native">Sim, nativa</strong></dd>
+              <dt>Local de origem</dt>
+              <dd>Brasil e Cone Sul (Argentina, Uruguai, Paraguai)</dd>
+              <dt>Regiões no RS</dt>
+              <dd>Pampas, beiras de estrada e campos abertos — ampla distribuição no estado</dd>
+            </dl>
+          </article>
+
+          <!-- Card: Descrição botânica -->
+          <article class="card card--dark card--wide" aria-label="Descrição botânica">
+            <span class="card-icon" aria-hidden="true">🔬</span>
+            <h3>Descrição Botânica</h3>
+            <p>Subarbusto de 50 a 100 cm, com ramos achatados, alados e trímeros (três faces), de cor verde-acinzentada. Apresenta folhas reduzidas ou ausentes na fase adulta, já que a fotossíntese ocorre principalmente pelos próprios ramos. Suas flores são pequenas, esverdeadas, dispostas em capítulos discretos. O sabor amargo característico é usado como referência de identificação em campo.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         CULTIVO — sol, plantio, solo
+    ============================================= -->
+    <section id="cultivo" class="section section--alt" aria-labelledby="cultivo-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">02 — Cultivo</span>
+          <h2 id="cultivo-title">Como Cultivar</h2>
+        </header>
+
+        <div class="cultivo-strip">
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">☀️</div>
+            <h3>Luminosidade</h3>
+            <p>Pleno sol. Espécie típica de campos abertos, não tolera sombreamento por longos períodos.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">🗓️</div>
+            <h3>Época de Plantio</h3>
+            <p>Primavera (setembro–novembro). Propagação por sementes ou divisão de touceiras estabelecidas.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">🪨</div>
+            <h3>Solo</h3>
+            <p>Solos arenosos a argilo-arenosos, bem drenados. Tolerante a solos pobres em nutrientes, típicos dos campos gaúchos.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">💧</div>
+            <h3>Irrigação</h3>
+            <p>Baixa a moderada. Espécie resistente à seca; evitar encharcamento, que favorece apodrecimento das raízes.</p>
+          </div>
+
+        </div>
+
+        <!-- Partes usadas -->
+        <div class="partes-usadas">
+          <h3>Partes Utilizadas</h3>
+          <ul class="partes-list" role="list">
+            <li><span class="parte-chip parte--caule">Ramos</span> Ramos verdes e flexíveis — parte principal usada nos chás</li>
+            <li><span class="parte-chip parte--flores">Flores</span> Capítulos florais — uso complementar em infusões mais concentradas</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         RECEITAS — passo a passo
+    ============================================= -->
+    <section id="receitas" class="section" aria-labelledby="receitas-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">03 — Receitas Medicinais</span>
+          <h2 id="receitas-title">Remédios Caseiros</h2>
+          <p class="section-desc">Receitas tradicionais do Rio Grande do Sul transmitidas de geração em geração.</p>
+        </header>
+
+        <!-- Tabs de receitas -->
+        <div class="receitas-tabs" role="tablist" aria-label="Receitas">
+          <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" aria-controls="receita-1" id="tab-1">Chá Digestivo e Hepático</button> <button class="tab-btn" role="tab" aria-selected="false" aria-controls="receita-2" id="tab-2">Chá para Controle Glicêmico</button> <button class="tab-btn" role="tab" aria-selected="false" aria-controls="receita-3" id="tab-3">Tintura Amarga</button>
+        </div>
+
+        <div class="receita-panel" id="receita-1" role="tabpanel" aria-labelledby="tab-1">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Chá de Carqueja para Fígado e Digestão</h3>
+              <p class="receita-desc">Bebida amarga tradicional gaúcha, usada para estimular a digestão, aliviar má digestão e apoiar a função hepática.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>1 colher (sopa) de ramos secos de carqueja</li>
+                  <li>500 ml de água filtrada</li>
+                  <li>Mel a gosto (opcional, para suavizar o amargor)</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Chá de Carqueja para Fígado e Digestão">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Ferva a água</strong>
+                  <p>Leve os 500 ml de água ao fogo até levantar fervura completa.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Adicione os ramos</strong>
+                  <p>Desligue o fogo e acrescente os ramos secos de carqueja diretamente na água.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Tampe e aguarde</strong>
+                  <p>Tampe o recipiente e deixe em infusão por 8 a 10 minutos.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Coe e consuma</strong>
+                  <p>Coe o chá e beba 1 xícara morna antes das principais refeições, até 2x ao dia.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="receita-panel receita-panel--hidden" id="receita-2" role="tabpanel" aria-labelledby="tab-2">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Infusão de Carqueja Auxiliar na Glicemia</h3>
+              <p class="receita-desc">Versão mais concentrada, usada popularmente como coadjuvante no controle dos níveis de açúcar no sangue. Não substitui medicação prescrita.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>2 colheres (sopa) de ramos secos de carqueja</li>
+                  <li>1 litro de água filtrada</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Infusão de Carqueja Auxiliar na Glicemia">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Ferva a água</strong>
+                  <p>Leve 1 litro de água ao fogo até a fervura.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Adicione a carqueja</strong>
+                  <p>Desligue o fogo e adicione os ramos secos, tampando o recipiente.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Deixe em infusão</strong>
+                  <p>Aguarde 15 minutos para uma infusão mais concentrada.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Coe e distribua ao longo do dia</strong>
+                  <p>Coe e beba pequenas quantidades distribuídas durante o dia, sempre acompanhando os níveis de glicemia com orientação médica.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="receita-panel receita-panel--hidden" id="receita-3" role="tabpanel" aria-labelledby="tab-3">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Tintura Caseira de Carqueja</h3>
+              <p class="receita-desc">Extrato alcoólico concentrado, usado em pequenas doses como digestivo e tônico amargo antes das refeições.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>80 g de ramos secos de carqueja, picados</li>
+                  <li>400 ml de álcool de cereais 70° (ou cachaça envelhecida)</li>
+                  <li>Frasco de vidro escuro com tampa</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Tintura Caseira de Carqueja">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Pique os ramos</strong>
+                  <p>Corte os ramos secos em pedaços pequenos para aumentar a superfície de contato.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Cubra com álcool</strong>
+                  <p>Coloque os ramos no frasco de vidro escuro e cubra completamente com o álcool.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Macere por 15 dias</strong>
+                  <p>Mantenha em local escuro, agitando o frasco suavemente 1 vez ao dia.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Filtre e armazene</strong>
+                  <p>Filtre com pano fino e guarde em frasco escuro. Dose: 15 a 20 gotas diluídas em água, antes das refeições.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         SAÚDE — benefícios
+    ============================================= -->
+    <section id="saude" class="section section--alt" aria-labelledby="saude-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">04 — Benefícios</span>
+          <h2 id="saude-title">O Que a Carqueja Faz pelo Corpo</h2>
+        </header>
+
+        <div class="beneficios-grid">
+
+          <article class="beneficio-card" aria-label="Fígado">
+            <div class="bcard-icon" aria-hidden="true">🫁</div>
+            <h3>Proteção Hepática</h3>
+            <p>Tradicionalmente usada como tônico amargo para estimular a função hepática e a produção de bile, auxiliando na digestão de gorduras.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Controle de glicemia">
+            <div class="bcard-icon" aria-hidden="true">🍬</div>
+            <h3>Apoio Glicêmico</h3>
+            <p>Estudos preliminares sugerem efeito hipoglicemiante, sendo usada popularmente como coadjuvante no controle do diabetes tipo 2.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Sistema digestivo">
+            <div class="bcard-icon" aria-hidden="true">🫀</div>
+            <h3>Digestiva</h3>
+            <p>O sabor amargo estimula a secreção de sucos gástricos, aliviando sensação de estômago pesado e má digestão.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Sistema urinário">
+            <div class="bcard-icon" aria-hidden="true">💧</div>
+            <h3>Diurética Leve</h3>
+            <p>Ação diurética suave, auxiliando na eliminação de líquidos e na sensação de inchaço.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Inflamação">
+            <div class="bcard-icon" aria-hidden="true">🔥</div>
+            <h3>Anti-inflamatória</h3>
+            <p>Flavonoides presentes nos ramos apresentam atividade anti-inflamatória, especialmente no trato digestivo.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Antioxidante">
+            <div class="bcard-icon" aria-hidden="true">⚡</div>
+            <h3>Antioxidante</h3>
+            <p>Compostos fenólicos combatem radicais livres, contribuindo para a proteção celular geral do organismo.</p>
+          </article>
+
+        </div>
+
+        <!-- Compostos ativos -->
+        <div class="compostos">
+          <h3>Principais Compostos Ativos</h3>
+          <div class="compostos-row">
+            <span class="composto-tag">Flavonoides</span>
+            <span class="composto-tag">Lactonas Sesquiterpênicas</span>
+            <span class="composto-tag">Saponinas</span>
+            <span class="composto-tag">Ácidos Fenólicos</span>
+            <span class="composto-tag">Óleo Essencial</span>
+            <span class="composto-tag">Taninos</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         PRECAUÇÕES — toxinas, partes tóxicas, aviso
+    ============================================= -->
+    <section id="precaucoes" class="section section--warn" aria-labelledby="prec-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">05 — Precauções</span>
+          <h2 id="prec-title">Uso Seguro e Advertências</h2>
+        </header>
+
+        <!-- Banner de aviso -->
+        <div class="aviso-banner" role="alert" aria-live="polite">
+          <span class="aviso-icon" aria-hidden="true">⚠️</span>
+          <p>As informações desta página têm caráter educativo. <strong>Consulte sempre um profissional de saúde</strong> antes de iniciar qualquer tratamento com plantas medicinais.</p>
+        </div>
+
+        <div class="prec-grid">
+
+          <article class="prec-card prec-card--red" aria-label="Partes tóxicas">
+            <h3>☠️ Partes com Restrição</h3>
+            <ul>
+              <li><strong>Uso excessivo:</strong> o consumo prolongado e em altas doses pode sobrecarregar o fígado, sendo necessário fazer pausas no uso</li>
+              <li><strong>Doses concentradas:</strong> infusões muito fortes podem causar desconforto gástrico em pessoas sensíveis</li>
+              <li><strong>Uso contínuo:</strong> não recomendado por mais de 30 dias seguidos sem orientação profissional</li>
+            </ul>
+          </article>
+
+          <article class="prec-card prec-card--orange" aria-label="Grupos de risco">
+            <h3>🚫 Contraindicações</h3>
+            <ul>
+              <li><strong>Grávidas e lactantes:</strong> uso não recomendado por falta de estudos de segurança consistentes</li>
+              <li><strong>Diabéticos em tratamento:</strong> pode potencializar o efeito de medicamentos hipoglicemiantes, exigindo monitoramento da glicemia</li>
+              <li><strong>Pessoas com pressão baixa:</strong> usar com cautela, pois pode intensificar a hipotensão</li>
+              <li><strong>Uso de diuréticos:</strong> pode somar o efeito diurético e causar desidratação</li>
+            </ul>
+          </article>
+
+          <article class="prec-card prec-card--yellow" aria-label="Toxinas presentes">
+            <h3>🧪 Compostos de Atenção</h3>
+            <ul>
+              <li><strong>Lactonas sesquiterpênicas:</strong> responsáveis pelo amargor; em excesso podem irritar a mucosa gástrica</li>
+              <li><strong>Saponinas:</strong> em altas concentrações podem causar desconforto intestinal</li>
+              <li><strong>Interação medicamentosa:</strong> pode interferir na absorção de outros fármacos administrados simultaneamente</li>
+            </ul>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <!-- ============================================================
+       FOOTER — Rodapé com links e aviso legal
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <!-- Coluna de marca / identidade -->
+      <div class="footer-brand footer-col">
+        <div class="logo">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name footer-logo-name">Ervas &amp; Vida</span>
+          </span>
+        </div>
+        <p>Seu guia de referência em plantas medicinais, fitoterapia e saúde natural baseada em evidências.</p>
+      </div>
+      <!-- Coluna de categorias -->
+      <div class="footer-col">
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="error.html">Chás Medicinais</a></li>
+          <li><a href="error.html">Xaropes Naturais</a></li>
+          <li><a href="error.html">Compressas</a></li>
+          <li><a href="error.html">Uso Externo</a></li>
+          <li><a href="error.html">Digestivos</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de informações -->
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="error.html">Sobre nós</a></li>
+          <li><a href="error.html">Como usar</a></li>
+          <li><a href="error.html">Glossário</a></li>
+          <li><a href="error.html">Blog</a></li>
+          <li><a href="error.html">Contato</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de avisos legais -->
+      <div class="footer-col">
+        <h4>Avisos</h4>
+        <ul>
+          <li><a href="error.html">Política de Privacidade</a></li>
+          <li><a href="error.html">Termos de Uso</a></li>
+          <li><a href="error.html">Aviso Legal</a></li>
+          <li><a href="error.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+    </div><!-- /footer-inner -->
+    <!-- Barra inferior com copyright e aviso de saúde -->
+    <div class="footer-bottom">
+      <p>© 2026 Ervas &amp; Vida. Todos os direitos reservados.</p>
+      <p>⚠️ Consulte sempre um profissional de saúde antes de usar plantas medicinais.</p>
+    </div>
+  </footer><!-- /footer -->
+
+  <!-- =============================================
+       SCRIPTS
+       Carregados ao final do body, depois de todo o
+       HTML existir no DOM. plantas3D.js é "module" e
+       importa sua própria cópia do Three.js via Skypack
+       — por isso NÃO há mais o <script> de CDN do
+       three.min.js aqui (evita duas versões conflitando).
+  ============================================= -->
+  <script type="module" src="JS/plantas3D.js"></script>
+  <script src="JS/plantaspage.js"></script>
+
+</body>
+</html>

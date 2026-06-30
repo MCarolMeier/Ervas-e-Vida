@@ -1,0 +1,970 @@
+/* ================================================================
+   style.css — Ervas & Vida: Plantas Medicinais
+   Organização:
+     1. Tokens de Design (variáveis CSS)
+     2. Reset & Base
+     3. Utilitários de Acessibilidade
+     4. Header (logo, ações)
+     5. Layout principal (main)
+     6. Card de Planta
+     7. Footer
+     8. Responsividade (media queries)
+     9. Preferência de movimento reduzido
+================================================================ */
+/* ================================================================
+   1. TOKENS DE DESIGN — Variáveis CSS globais
+      Centralizar cores, sombras, espaçamentos e fontes garante
+      consistência visual e facilita futuras manutenções.
+================================================================ */
+:root {
+  /* Paleta de cores */
+  --color-bg:           #f5efe4;           /* Fundo principal (areia clara) */
+  --color-bg-alt:       #ede4d4;           /* Fundo alternativo (mais escuro) */
+  --color-surface:      #faf6ef;           /* Superfície dos cards */
+  --color-header:       #2e1f12;           /* Header / Footer (marrom escuro) */
+  --color-header-alt:   #3d2b1f;           /* Header gradiente (marrom médio) */
+  --color-primary:      #5c8a3c;           /* Verde primário */
+  --color-primary-2:    #916B24;           /* marrom secundário */
+  --color-primary-dark: #3e6028;           /* Verde escuro (hover) */
+  --color-accent:       #b8763a;           /* Âmbar (destaque) */
+  --color-accent-light: #e6a05a;           /* Âmbar claro */
+  --color-text:         #2c1e0f;           /* Texto principal */
+  --color-text-muted:   #6b5740;           /* Texto secundário */
+  --color-border:       #c9b99a;           /* Bordas dos elementos */
+  --color-white:        #ffffff;
+  --color-tag-bg:       rgba(255,255,255,0.12);   /* Fundo chip inativo */
+  --color-tag-hover:    rgba(255,255,255,0.25);   /* Fundo chip hover */
+  --color-focus:        #f0c040;           /* Cor de foco (acessibilidade) */
+  --color-texto-filtro: #681C1C;           /* Vermelho escuro para texto de filtro */
+  --color-filtro:       #F7A965;          /* Laranja claro para fundo de filtro */
+  --color-filtro-hover: #D68035;          /* Laranja mais escuro para hover de filtro */
+
+  /* Raios de borda */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-full: 9999px;  /* Pill / circular */
+  /* Sombras */
+  --shadow-sm:   0 2px 8px  rgba(44,30,15,0.10);
+  --shadow-md:   0 6px 20px rgba(44,30,15,0.15);
+  --shadow-lg:   0 12px 40px rgba(44,30,15,0.20);
+  --shadow-card: 0 4px 16px rgba(44,30,15,0.12);
+  /* Transições */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow:   0.5s ease;
+  /* Tipografia */
+  --font-display: 'Playfair Display', Georgia, serif;  /* Títulos e destaques */
+  --font-body:    'Inter', system-ui, sans-serif;       /* Corpo de texto */
+}
+
+/* ================================================================
+   2. RESET & BASE
+      Normaliza estilos cross-browser e define base do documento.
+================================================================ */
+/* Box model inclusivo para todos os elementos */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* Rolagem suave ao navegar por âncoras */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ================================================================
+   3. UTILITÁRIOS DE ACESSIBILIDADE
+      Elementos visualmente ocultos, mas lidos por leitores de tela.
+================================================================ */
+/* Oculta visualmente, mas mantém no fluxo de acessibilidade */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+/* Skip link: aparece apenas ao receber foco via teclado */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 6px;
+  z-index: 10000;
+  padding: 8px 16px;
+  background: var(--color-focus);
+  color: var(--color-text);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.skip-link:focus {
+  top: 6px; /* Torna visível ao receber foco */
+}
+
+/* ================================================================
+   4. HEADER — Cabeçalho fixo com logo, busca e ações
+================================================================ */
+header {
+  background: linear-gradient(135deg, var(--color-header) 0%, var(--color-header-alt) 100%);
+  position: sticky;    /* Fica fixo no topo ao rolar a página */
+  top: 0;
+  left: 0;
+  height: 64px;
+  
+  z-index: 100;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+
+}
+/* Largura máxima e padding horizontal do conteúdo interno */
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+/* Linha superior: logo + busca + ações em linha */
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 0;
+}
+/* ---- Logo ---- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  flex-shrink: 0;       /* Não encolhe em telas menores */
+}
+.logo-icon {
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 0.5px;
+}
+
+/* Usado no footer para manter cor branca */
+.footer-logo-name {
+  color: var(--color-white);
+}
+.logo-tagline {
+  font-size: 0.65rem;
+  color: var(--color-accent-light);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ================================================================
+   6. LAYOUT PRINCIPAL
+================================================================ */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* ================================================================
+   9. GRID DE CARDS — Layout responsivo com auto-fill
+================================================================ */
+.plants-grid {
+  display: grid;
+  /* auto-fill: cria quantas colunas couberem com mínimo 200px */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ================================================================
+   10. CARD DE PLANTA
+================================================================ */
+.plant-card {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition:
+    transform        var(--transition-normal),
+    box-shadow       var(--transition-normal),
+    border-color     var(--transition-normal);
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+.plant-card:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+/* Efeito de levitação ao passar o mouse */
+.plant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+/* ---- Área da imagem do card ---- */
+.card-image-wrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-bg-alt);   /* Fundo enquanto imagem carrega */
+}
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+/* Zoom suave na imagem ao hover no card */
+.plant-card:hover .card-image-wrap img {
+  transform: scale(1.07);
+}
+/* Placeholder para cards sem foto: gradiente + emoji */
+.card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+}
+/* Badge no canto superior esquerdo da imagem */
+.card-badge {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  padding: 0.18rem 0.6rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.card-badge.accent {
+  background: var(--color-accent);   /* Variante laranja */
+}
+/* Botão de favoritar flutuante */
+.card-fav {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--color-text-muted);
+}
+.card-fav:hover {
+  background: var(--color-white);
+  color: #c0392b;       /* Vermelho ao hover */
+  transform: scale(1.1);
+}
+.card-fav[aria-pressed="true"] {
+  color: #c0392b;       /* Favorito ativo: coração vermelho preenchido */
+}
+.card-fav:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+/* ---- Corpo do card (texto) ---- */
+.card-body {
+  padding: 0.85rem 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;               /* Ocupa espaço restante para alinhar footers */
+}
+.card-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-header);
+  line-height: 1.2;
+}
+.card-sci {
+  font-size: 0.73rem;
+  color: var(--color-text-muted);
+  font-style: italic;    /* Nome científico em itálico (convenção botânica) */
+}
+.card-desc {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  /* Limita a 2 linhas com reticências */
+  display: -webkit-box;
+  line-clamp:  2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* Tags de uso medicinal */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+.card-tag {
+  padding: 0.15rem 0.5rem;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+/* ---- Rodapé do card (avaliação) ---- */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem 0.8rem;
+  border-top: 1px solid var(--color-border);
+}
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.78rem;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.card-more {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/**/
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: var(--radius-md);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Em telas estreitas, o avatar centraliza acima das informações
+   em vez de espremer ao lado */
+@media (max-width: 480px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .info-grid {
+    text-align: left;
+  }
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+}
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-header);
+}
+
+.profile-bio {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 0.4rem;
+}
+
+/* ================================================================
+   AVATAR — área clicável com overlay no hover + badge de câmera
+   fixo no canto (estilo Instagram/WhatsApp)
+================================================================ */
+
+/* Container clicável (label) — define o tamanho e contexto de
+   posicionamento para o overlay e o badge */
+.avatar-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: block;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 3px solid var(--color-primary);
+  display: block;
+}
+
+/* Overlay escuro — invisível por padrão, aparece no hover/foco
+   cobrindo a foto inteira para indicar que ela é clicável */
+.avatar-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  text-align: center;
+}
+.avatar-container:hover .avatar-overlay,
+.avatar-container:focus-within .avatar-overlay {
+  opacity: 1;
+}
+.avatar-overlay__icon {
+  font-size: 1.5rem;
+}
+.avatar-overlay__text {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* Badge de câmera — fixo no canto inferior direito, sempre visível,
+   independente do hover (diferente do overlay) */
+.avatar-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  border: 2px solid var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.avatar-container:hover .avatar-badge {
+  background: var(--color-primary-dark);
+  transform: scale(1.08);
+}
+.avatar-badge img {
+  width: 16px;
+  height: 16px;
+  /* O ícone original é escuro — inverte para ficar legível sobre
+     o fundo colorido do badge */
+  filter: brightness(0) invert(1);
+}
+
+/* Foco visível via teclado (o avatar é navegável por ser um <label>
+   associado a um <input>, então merece indicação de foco clara) */
+.avatar-container:focus-within {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+#profileInfo {
+  width: 100%;
+    background: #9b7526;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  position: relative;
+  padding: 1rem;
+}
+
+.profile-info {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.info-item {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  box-shadow: var(--shadow-card);
+}
+.info-item h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-header);
+  margin-bottom: 0.5rem;
+}
+.info-item p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+.info-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+.info-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-header);
+  margin-bottom: 0.5rem;
+}
+.info-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+.about-section {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.about-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-header);
+  margin-bottom: 0.75rem;
+}
+
+.saved-plants {
+  margin-top: 1.5rem;
+  padding: 1rem;
+}
+.saved-plants span {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  padding: 0.40rem;
+}
+.plants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+
+}
+
+.plant-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition:
+    transform        var(--transition-normal),
+    box-shadow       var(--transition-normal),
+    border-color     var(--transition-normal);
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+   
+}
+.plant-card h3 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-header);
+    line-height: 1.2;
+    text-align: center;
+    padding: 0.5rem 0;
+   }
+.plant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+.plant-card:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.plant-image {
+  width: 100%;
+  height: 150px;
+  justify-self: center;
+  background: var(--color-bg-alt);   /* Fundo enquanto imagem carrega */
+  object-fit: cover;
+}
+
+.guest-state__actions {
+  display: flex;
+  flex-direction: column 2;
+  column-gap: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+  margin: 5px;
+  color: #fffdfa;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+
+}
+
+.btn-primary, .btn-secondary {
+  display: flex;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  justify-content: center;
+  align-items: center;
+  transform: d var(--transition-normal);
+}
+
+.btn-primary {
+  width: 100px;
+  height: 30px;
+}
+
+.btn-secondary {
+  width: 135px;
+  height: 30px;
+}
+
+/* ================================================================
+   12. FOOTER — Rodapé com links e aviso
+================================================================ */
+footer {
+  background: var(--color-header);
+  color: rgba(255,255,255,0.7);
+  padding: 2.5rem 1.5rem;
+  margin-top: 60%;
+  position: inherit;
+}
+/* Grid de colunas do footer */
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+}
+.footer-col ul {
+  list-style: none;
+}
+.footer-col ul li + li {
+  margin-top: 0.4rem;
+}
+.footer-col a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.83rem;
+  transition: color var(--transition-fast);
+}
+.footer-col a:hover {
+  color: var(--color-accent-light);
+}
+.footer-col a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+/* Barra inferior do footer */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 1.75rem auto 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+}
+/* ================================================================
+   13. RESPONSIVIDADE — Media Queries
+      Abordagem Mobile-First: ajusta layout para telas menores.
+================================================================ */
+/* Tablet e abaixo (≤ 768px) */
+@media (max-width: 768px) {
+  /* Header: reorganiza em duas linhas */
+  .header-top {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  /* Esconde tagline para economizar espaço */
+  .logo-tagline {
+    display: none;
+  }
+  /* Busca ocupa linha completa */
+  .search-wrapper {
+    order: 2;
+    flex: 100%;
+    max-width: 100%;
+  }
+  /* Ações ficam à direita na primeira linha */
+  .header-actions {
+    order: 3;
+  }
+  /* Slide: gradiente vem de baixo para cobrir o texto */
+  .slide-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(20,12,4,0.80) 0%,
+      rgba(20,12,4,0.30) 60%,
+      transparent 100%
+    );
+    align-items: flex-end;   /* Texto fica na parte inferior do slide */
+  }
+  .slide-content {
+    max-width: 100%;
+  }
+  /* Esconde descrição no mobile para economizar espaço */
+  .slide-desc {
+    display: none;
+  }
+  /* Cabeçalho de seção em coluna */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* Mobile pequeno (≤ 480px) */
+@media (max-width: 480px) {
+  /* Proporção 16:9 para slides em mobile */
+  .carousel-slide {
+    aspect-ratio: 16 / 9;
+  }
+  /* Reduz padding interno */
+  .header-inner {
+    padding: 0 1rem;
+  }
+  main {
+    padding: 0 1rem 2rem;
+  }
+  /* Botões do carrossel menores */
+  #carousel-prev,
+  #carousel-next {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  /* Grid: 2 colunas fixas em mobile pequeno */
+  .plants-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+}
+/* ================================================================
+   14. PREFERÊNCIA DE MOVIMENTO REDUZIDO (Acessibilidade)
+      Respeita usuários sensíveis a animações (ex: epilepsia).
+================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+/* ================================================================
+   15. AUTENTICAÇÃO — Logout, aviso de visitante
+       Adicionados junto com o sistema de login/inscrição via
+       localStorage (Auth, em auth.js)
+================================================================ */
+
+/* Botão "Sair" no header — só aparece quando há sessão ativa */
+.logout-btn {
+  margin-left: auto;
+  background: rgba(255,255,255,0.12);
+  color: var(--color-white);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-full);
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.logout-btn:hover {
+  background: rgba(255,255,255,0.22);
+}
+.logout-btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Estado vazio para visitantes — ocupa o espaço principal da página,
+   como um "card de boas-vindas" central, em vez do pequeno aviso
+   lateral que existia antes */
+.guest-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 2.5rem 1.5rem;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.guest-state__icon {
+  font-size: 2.75rem;
+  margin-bottom: 0.75rem;
+}
+.guest-state__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-header);
+  margin-bottom: 0.6rem;
+}
+.guest-state__text {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+.guest-state__actions {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* Hierarquia clara entre as duas ações: Entrar é a ação primária
+   (preenchida, mais chamativa) e Criar conta é secundária (contorno) */
+.btn-primary,
+.btn-secondary {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 1.5px solid var(--color-primary);
+}
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Botão de remover favorito no card, dentro do perfil */
+.plant-card__remove {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  color: var(--color-white);
+  border: none;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.plant-card__remove:hover {
+  background: rgba(0,0,0,0.75);
+}
+
+/* Placeholder de imagem para plantas favoritas sem foto (img: null) */
+.plant-image--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  background: var(--color-bg-alt);
+}
+
+/* Mensagem de "nenhum favorito ainda" */
+.empty-favorites {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
+}
+.empty-favorites a {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+.empty-favorites a:hover {
+  text-decoration: underline;
+}
+}

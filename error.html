@@ -1,0 +1,92 @@
+s<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Página não encontrada — Marcela Medicinal" />
+  <title>Área com Espinhos — Marcela Medicinal</title>
+
+  <!-- Google Fonts: Playfair Display (display) + Inter (corpo) -->
+  <!-- Mesmas fontes usadas no projeto principal (index.html) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"/>
+  <!-- Folha de estilos da página de erro (separada do style.css principal) -->
+  <link rel="stylesheet" href="CSS/errorstyle.css" />
+</head>
+<body>
+
+  <!--
+    CANVAS DE ESPINHOS
+  -->
+  <img id="thorns-1" aria-hidden="true" src="ING/espinhos.svg">
+  <img id="thorns-2" aria-hidden="true" src="ING/espinhos.svg">
+
+  <!--
+    CONTEÚDO PRINCIPAL
+    role="main" + aria-labelledby reforçam a semântica para tecnologias assistivas.
+  -->
+  <main class="error-page" role="main" aria-labelledby="error-title">
+
+    <!--
+      CARD DA PLÂNTULA
+      SVG inline — sem dependência de arquivo externo.
+      Usa cores do sistema de design botânico.
+      aria-hidden="true" pois é decorativo; o texto abaixo já comunica o contexto.
+    -->
+    <div class="plant-card" aria-hidden="true">
+      <svg
+        viewBox="0 0 120 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Plântula emergindo da terra">
+        <img src="ING/3_800+ Planta Morta Ilustração de stock, gráficos vetoriais e clipart royalty-free.jpg" alt="Plântula emergindo da terra" />
+      </svg>
+    </div>
+
+    <!-- Bloco de texto e CTA -->
+    <div class="error-text">
+
+      <!--
+        Código 404 — exibido com opacidade muito baixa (decorativo/tipográfico).
+        aria-hidden="true" evita que leitores de tela leiam "404" separado do título.
+      -->
+      <p class="error-code" aria-hidden="true">404</p>
+
+      <!-- H1 acessível — identificado pelo aria-labelledby do <main> -->
+      <h1 class="error-title" id="error-title">Área com espinhos</h1>
+
+      <!-- Mensagem descritiva — copy fiel à imagem de referência -->
+      <p class="error-message">
+        Parece que entramos no meio de alguns espinhos.<br>
+        Melhor voltar para uma área menos pontiaguda.
+      </p>
+
+      <!--
+        Botão de retorno — âncora semântica.
+        Ícone de seta é decorativo (aria-hidden), texto é descritivo.
+      -->
+      <a href="index.html" class="btn-voltar">
+        <span aria-hidden="true">←</span>
+        Voltar para a trilha
+      </a>
+
+    </div>
+  </main>
+
+  <!--
+    RODAPÉ MÍNIMO
+    role="contentinfo" identifica o rodapé do site para tecnologias assistivas.
+  -->
+  <footer class="error-footer" role="contentinfo">
+    <span aria-label="Marcela Medicinal">✦ Ervas &amp; Vida ✦</span>
+  </footer>
+
+  <!-- Script de espinhos procedurais (separado do HTML) -->
+  <script src="JS/errorscript.js"></script>
+
+</body>
+</html>

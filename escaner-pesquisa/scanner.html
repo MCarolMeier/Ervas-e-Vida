@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escanear Planta – Jardim das Plantas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="scanner.css" />
+</head>
+<body>
+
+  <main class="page">
+
+    <header class="page__header">
+      <h1 class="page__title">Identificar planta</h1>
+      <p class="page__subtitle">Use a câmera ou envie uma foto para identificar a espécie</p>
+    </header>
+
+    <!-- ========================
+         ABAS: Câmera / Galeria
+    ======================== -->
+    <div class="scanner-tabs" role="tablist" aria-label="Modo de identificação">
+      <button class="scanner-tab is-active" id="tabCamera" role="tab" aria-selected="true" aria-controls="panelCamera">
+        <span aria-hidden="true">📷</span> Câmera
+      </button>
+      <button class="scanner-tab" id="tabUpload" role="tab" aria-selected="false" aria-controls="panelUpload">
+        <span aria-hidden="true">🖼️</span> Galeria
+      </button>
+    </div>
+
+    <!-- ========================
+         PAINEL: CÂMERA
+    ======================== -->
+    <section class="scanner-panel is-active" id="panelCamera" role="tabpanel" aria-labelledby="tabCamera">
+
+      <div class="camera-frame" id="cameraFrame">
+        <!-- Vídeo ao vivo da câmera (preenchido via JS com getUserMedia) -->
+        <video id="cameraVideo" class="camera-frame__video" autoplay playsinline muted></video>
+
+        <!-- Canvas oculto usado para capturar o frame do vídeo -->
+        <canvas id="cameraCanvas" class="camera-frame__canvas" hidden></canvas>
+
+        <!-- Estado inicial antes de ativar a câmera -->
+        <div class="camera-frame__placeholder" id="cameraPlaceholder">
+          <span class="camera-frame__icon" aria-hidden="true">📷</span>
+          <p>Toque para ativar a câmera</p>
+        </div>
+
+        <!-- Guia visual de enquadramento (moldura de foco) -->
+        <div class="camera-frame__guide" aria-hidden="true"></div>
+
+        <!-- Mensagem de erro de permissão -->
+        <div class="camera-frame__error" id="cameraError" hidden>
+          <span aria-hidden="true">⚠️</span>
+          <p id="cameraErrorText">Não foi possível acessar a câmera.</p>
+        </div>
+      </div>
+
+      <!-- Controles da câmera -->
+      <div class="camera-controls">
+        <button class="btn-icon" id="switchCameraBtn" type="button" aria-label="Alternar câmera" hidden>
+          <span aria-hidden="true">🔄</span>
+        </button>
+
+        <button class="btn-shutter" id="shutterBtn" type="button" aria-label="Capturar foto">
+          <span class="btn-shutter__ring"></span>
+        </button>
+
+        <!-- Fallback nativo: em celulares sem suporte a getUserMedia,
+             este input abre a câmera do sistema diretamente -->
+        <label class="btn-icon" for="nativeCameraInput" aria-label="Usar câmera do sistema">
+          <span aria-hidden="true">📲</span>
+        </label>
+        <input
+          type="file"
+          id="nativeCameraInput"
+          accept="image/*"
+          capture="environment"
+          class="visually-hidden"
+        />
+      </div>
+
+      <p class="scanner-hint">Centralize a folha, flor ou planta inteira dentro da moldura</p>
+    </section>
+
+    <!-- ========================
+         PAINEL: UPLOAD / GALERIA
+    ======================== -->
+    <section class="scanner-panel" id="panelUpload" role="tabpanel" aria-labelledby="tabUpload" hidden>
+
+      <div
+        class="dropzone"
+        id="dropzone"
+        tabindex="0"
+        role="button"
+        aria-label="Selecionar ou arrastar imagem da planta"
+      >
+        <span class="dropzone__icon" aria-hidden="true">🖼️</span>
+        <p class="dropzone__title">Arraste uma imagem aqui</p>
+        <p class="dropzone__subtitle">ou toque para escolher da galeria</p>
+        <span class="dropzone__formats">JPG, PNG ou WEBP — até 10MB</span>
+      </div>
+
+      <input
+        type="file"
+        id="galleryInput"
+        accept="image/*"
+        class="visually-hidden"
+      />
+
+      <!-- Pré-visualização da imagem selecionada -->
+      <div class="preview" id="previewWrap" hidden>
+        <img id="previewImg" class="preview__img" alt="Pré-visualização da imagem selecionada para análise" />
+        <button class="preview__remove" id="previewRemove" type="button" aria-label="Remover imagem">✕</button>
+      </div>
+
+      <button class="btn-analyze" id="analyzeBtn" type="button" hidden>
+        Identificar planta
+      </button>
+    </section>
+
+    <!-- ========================
+         ESTADO: ANALISANDO
+    ======================== -->
+    <div class="analyzing" id="analyzingState" hidden role="status" aria-live="polite">
+      <div class="analyzing__spinner" aria-hidden="true"></div>
+      <p>Analisando imagem...</p>
+    </div>
+
+    <!-- ========================
+         RESULTADO DA IDENTIFICAÇÃO
+    ======================== -->
+    <section class="result-card" id="resultCard" hidden aria-labelledby="result-title" role="region">
+      <div class="result-card__header">
+        <img id="resultThumb" class="result-card__thumb" alt="" />
+        <div>
+          <span class="result-card__badge" id="resultConfidence">92% de confiança</span>
+          <h2 class="result-card__title" id="result-title">Marcela</h2>
+          <p class="result-card__sci">Achyrocline satureioides</p>
+        </div>
+      </div>
+
+      <p class="result-card__desc" id="resultDesc">
+        Espécie nativa do Rio Grande do Sul, tradicionalmente usada em chás digestivos e calmantes.
+      </p>
+
+      <div class="result-card__actions">
+        <a href="index.html" class="btn-secondary">Ver ficha completa</a>
+        <button class="btn-secondary" id="tryAgainBtn" type="button">Tentar outra foto</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="scanner.js"></script>
+</body>
+</html>

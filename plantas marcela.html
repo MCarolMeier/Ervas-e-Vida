@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guia completo da planta medicinal Marcela — origem, receitas, plantio e benefícios no Rio Grande do Sul." />
+  <title>Marcela — Planta Medicinal</title>
+
+  <!-- Google Fonts: Playfair Display (display) + Inter (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Folha de estilos principal -->
+  <link rel="stylesheet" href="CSS/plantasstyle.css" />
+</head>
+<body>
+    <!-- plantaspage.js movido para o fim do body (ver antes de </body>) —
+         scripts no <head>/topo do body bloqueiam a renderização e tentam
+         rodar antes que os elementos do HTML existam -->
+
+ <header role="banner">
+    <div class="header-inner">
+      <!-- ---- Linha superior: Logo + Busca + Ações ---- -->
+      <div class="header-top">
+        <!-- Logo com link para a home -->
+        <a class="logo" href="index.html" aria-label="Ervas & Vida — Página inicial">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name">Ervas &amp; Vida</span>
+            <span class="logo-tagline">Plantas Medicinais</span>
+          </span>
+        </a>
+        <!-- Barra de pesquisa por texto -->
+        <!-- role="search" marca a região como área de busca para leitores de tela -->
+        <div class="search-wrapper" role="search">
+          <!-- Label visualmente oculta, mas lida por leitores de tela -->
+          <label class="visually-hidden" for="search-input" id="search-label">
+            Pesquisar plantas medicinais
+          </label>
+          <div class="search-input-group">
+            <!-- Ícone decorativo (aria-hidden pois é puramente visual) -->
+            <span class="search-icon" aria-hidden="true">
+              <img class="icon" src="ING/icon/315884_gear-icon.svg" alt="Pesquisar" />
+            </span>
+            <input
+              type="search"
+              id="search-input"
+              name="q"
+              placeholder="Pesquisar plantas, usos, propriedades…"
+              autocomplete="off"
+              aria-labelledby="search-label"
+              aria-controls="plants-grid"
+              aria-describedby="search-status"
+            />
+            <button id="search-btn" type="button" aria-label="Executar busca">
+              Buscar
+            </button>
+          </div>
+          <!-- Região live: anuncia resultados para leitores de tela -->
+          <span id="search-status" aria-live="polite" aria-atomic="true" class="visually-hidden"></span>
+        </div>
+        <!-- Botões de ação rápida (favoritos, conta, menu) -->
+        <div class="header-actions" role="group" aria-label="Ações do usuário">
+          <a href="perfil.html" class="icon-btn" aria-label="Minha conta" title="Minha conta">
+            <img class="icon" src="ING/icon/315892_user-profile-icon.svg" alt="Minha conta" />
+          </a>
+        </div>
+      </div><!-- /header-top -->
+      
+    </div><!-- /header-inner -->
+  </header><!-- /header -->
+
+  <main>
+
+    <!-- =============================================
+         HERO — Modelo 3D + nome da planta
+    ============================================= -->
+    <section class="hero-3d" aria-label="Visualização e identificação da planta">
+
+      <!-- Container do canvas 3D — id usado por plantas3D.js -->
+      <div id="container3D" class="container-3d" aria-label="Modelo 3D interativo da Marcela. Arraste para girar."></div>
+
+      <!-- Crachá de identificação sobre o canvas -->
+      <div class="hero-badge">
+        <p class="eyebrow">Planta Medicinal</p>
+        <h1 id="hero-title">Marcela</h1>
+        <p class="hero-sci"><em>Achyrocline satureioides</em></p>
+        <p class="hero-sub">Rio Grande do Sul · Nativa</p>
+      </div>
+
+      <!-- Indicador de scroll -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-dot"></span>
+        <span class="scroll-label">Role para explorar</span>
+      </div>
+    </section>
+
+    <!-- =============================================
+         IDENTIFICAÇÃO — nomes, origem, região
+    ============================================= -->
+    <section id="identificacao" class="section" aria-labelledby="id-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">01 — Identificação</span>
+          <h2 id="id-title">Quem é a Marcela?</h2>
+        </header>
+
+        <div class="cards-grid">
+
+          <!-- Card: Nomes -->
+          <article class="card card--dark" aria-label="Nomes da planta">
+            <span class="card-icon" aria-hidden="true">🌿</span>
+            <h3>Nomes</h3>
+            <dl class="info-list">
+              <dt>Nome popular</dt>
+              <dd>Marcela, Macela, Macela-galega, Marcela-do-campo</dd>
+              <dt>Nome científico</dt>
+              <dd><em>Achyrocline satureioides</em> (Lam.) DC.</dd>
+              <dt>Família</dt>
+              <dd>Asteraceae</dd>
+            </dl>
+          </article>
+
+          <!-- Card: Origem e distribuição -->
+          <article class="card card--dark" aria-label="Origem e distribuição">
+            <span class="card-icon" aria-hidden="true">🌍</span>
+            <h3>Origem</h3>
+            <dl class="info-list">
+              <dt>Natural do RS?</dt>
+              <dd><strong class="badge-native">Sim, nativa</strong></dd>
+              <dt>Local de origem</dt>
+              <dd>América do Sul (Brasil, Argentina, Uruguai, Paraguai)</dd>
+              <dt>Regiões no RS</dt>
+              <dd>Campos do Sul, Serra Gaúcha, Planalto, Missões e litoral — ampla distribuição</dd>
+            </dl>
+          </article>
+
+          <!-- Card: Descrição botânica -->
+          <article class="card card--dark card--wide" aria-label="Descrição botânica">
+            <span class="card-icon" aria-hidden="true">🔬</span>
+            <h3>Descrição Botânica</h3>
+            <p>Erva ou subarbusto aromático de 40 a 80 cm, com hastes esbranquiçadas e folhas lineares. Suas flores, pequenas e amarelo-douradas, surgem em capítulos agrupados em panículas terminais. A planta exala perfume suave e característico, usado como referência de identificação em campo.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         CULTIVO — sol, plantio, solo
+    ============================================= -->
+    <section id="cultivo" class="section section--alt" aria-labelledby="cultivo-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">02 — Cultivo</span>
+          <h2 id="cultivo-title">Como Cultivar</h2>
+        </header>
+
+        <div class="cultivo-strip">
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">☀️</div>
+            <h3>Luminosidade</h3>
+            <p>Pleno sol ou meia-sombra. Prefere locais abertos e arejados, como campos e bordas de matas.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">🗓️</div>
+            <h3>Época de Plantio</h3>
+            <p>Primavera (setembro–novembro) no RS. Sementes ou mudas por estaquia de ramos jovens.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">🪨</div>
+            <h3>Solo</h3>
+            <p>Prefere solos arenosos, bem drenados e levemente ácidos. Tolerante a solos pobres — típico dos campos nativos gaúchos.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">💧</div>
+            <h3>Irrigação</h3>
+            <p>Moderada. Não tolera encharcamento. A colheita das flores ocorre em verão (dezembro–fevereiro), antes da floração completa.</p>
+          </div>
+
+        </div>
+
+        <!-- Partes usadas -->
+        <div class="partes-usadas">
+          <h3>Partes Utilizadas</h3>
+          <ul class="partes-list" role="list">
+            <li><span class="parte-chip parte--flores">Flores</span> Inflorescências secas — parte principal usada na medicina popular</li>
+            <li><span class="parte-chip parte--folhas">Folhas</span> Folhas jovens — usadas em chás e compressas</li>
+            <li><span class="parte-chip parte--caule">Caules</span> Ramos jovens — uso secundário em infusões</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         RECEITAS — passo a passo
+    ============================================= -->
+    <section id="receitas" class="section" aria-labelledby="receitas-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">03 — Receitas Medicinais</span>
+          <h2 id="receitas-title">Remédios Caseiros</h2>
+          <p class="section-desc">Receitas tradicionais do Rio Grande do Sul transmitidas de geração em geração.</p>
+        </header>
+
+        <!-- Tabs de receitas -->
+        <div class="receitas-tabs" role="tablist" aria-label="Receitas">
+          <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" aria-controls="receita-1" id="tab-1">Chá Digestivo</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="receita-2" id="tab-2">Compressa Anti-inflamatória</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="receita-3" id="tab-3">Tintura Caseira</button>
+        </div>
+
+        <!-- Receita 1: Chá -->
+        <div class="receita-panel" id="receita-1" role="tabpanel" aria-labelledby="tab-1">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Chá de Marcela Digestivo</h3>
+              <p class="receita-desc">Clássico gaúcho para aliviar cólicas, gases, indigestão e mal-estar estomacal. Muito usado após refeições pesadas.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>2 colheres (sopa) de flores secas de marcela</li>
+                  <li>500 ml de água filtrada</li>
+                  <li>Mel ou estévia a gosto (opcional)</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo do chá digestivo">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Ferva a água</strong>
+                  <p>Leve os 500 ml de água ao fogo até atingir fervura completa. Desligue imediatamente.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Adicione as flores</strong>
+                  <p>Coloque as flores secas de marcela em recipiente limpo e despeje a água quente sobre elas.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Tampe e aguarde</strong>
+                  <p>Tampe o recipiente e deixe em infusão por 10 minutos. Não ferva as flores — isso destrói os princípios ativos.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Coe e consuma</strong>
+                  <p>Coe o chá, adoce se desejar e tome 1 xícara morna após as refeições. Até 3x ao dia.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Receita 2: Compressa -->
+        <div class="receita-panel receita-panel--hidden" id="receita-2" role="tabpanel" aria-labelledby="tab-2">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Compressa Anti-inflamatória</h3>
+              <p class="receita-desc">Uso externo para aliviar dores musculares, contusões e processos inflamatórios na pele. Tradicional entre agricultores gaúchos.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>4 colheres (sopa) de flores e folhas frescas</li>
+                  <li>1 litro de água</li>
+                  <li>Pano limpo de algodão</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo da compressa">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Prepare a infusão concentrada</strong>
+                  <p>Ferva 1 litro de água, desligue e adicione as flores e folhas de marcela. Tampe por 15 minutos.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Coe o líquido</strong>
+                  <p>Retire as partes vegetais e reserve apenas o líquido. Aguarde esfriar até temperatura morna (não quente).</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Embeba o pano</strong>
+                  <p>Mergulhe o pano de algodão limpo no líquido morno e escorra o excesso.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Aplique na região</strong>
+                  <p>Aplique o pano embebido sobre a área afetada por 15 a 20 minutos. Repita 2x ao dia.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Receita 3: Tintura -->
+        <div class="receita-panel receita-panel--hidden" id="receita-3" role="tabpanel" aria-labelledby="tab-3">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Tintura Caseira</h3>
+              <p class="receita-desc">Extrato alcoólico de alta concentração. Uso em pequenas doses para tratar problemas hepáticos, digestivos e como ansiolítico leve.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>100 g de flores secas de marcela</li>
+                  <li>500 ml de álcool de cereais 70° (ou vodca)</li>
+                  <li>Frasco de vidro escuro com tampa</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo da tintura">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Coloque as flores no frasco</strong>
+                  <p>Introduza as flores secas de marcela no frasco de vidro escuro, ocupando cerca de 1/3 do volume.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Cubra com álcool</strong>
+                  <p>Despeje o álcool 70° sobre as flores até cobri-las completamente. Feche bem o frasco.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Macere por 14 dias</strong>
+                  <p>Mantenha o frasco em local escuro e arejado, agitando suavemente 1x ao dia durante 14 dias.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Filtre e armazene</strong>
+                  <p>Filtre com pano fino. A tintura dura até 2 anos. Dose: 20 gotas em água 3x ao dia, sob orientação.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         SAÚDE — benefícios
+    ============================================= -->
+    <section id="saude" class="section section--alt" aria-labelledby="saude-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">04 — Benefícios</span>
+          <h2 id="saude-title">O Que a Marcela Faz pelo Corpo</h2>
+        </header>
+
+        <div class="beneficios-grid">
+
+          <article class="beneficio-card" aria-label="Sistema digestivo">
+            <div class="bcard-icon" aria-hidden="true">🫀</div>
+            <h3>Sistema Digestivo</h3>
+            <p>Alivia espasmos intestinais, gases, náuseas e indigestão. Estimula a secreção de bile, auxiliando na digestão de gorduras. Uso comprovado contra gastrite leve.</p>
+          </article>
+
+          <article class="beneficio-card" aria-label="Fígado">
+            <div class="bcard-icon" aria-hidden="true">🫁</div>
+            <h3>Proteção Hepática</h3>
+            <p>Princípios ativos como quercetina e luteolina protegem as células do fígado contra danos oxidativos. Apoio ao tratamento de hepatites crônicas leves.</p>
+          </article>
+
+          <article class="beneficio-card" aria-label="Inflamação">
+            <div class="bcard-icon" aria-hidden="true">🔥</div>
+            <h3>Anti-inflamatória</h3>
+            <p>Flavonoides presentes nas flores inibem mediadores inflamatórios. Eficaz em processos inflamatórios de pele, mucosas e vias digestivas.</p>
+          </article>
+
+          <article class="beneficio-card" aria-label="Sistema nervoso">
+            <div class="bcard-icon" aria-hidden="true">🧠</div>
+            <h3>Calmante Leve</h3>
+            <p>Ação levemente sedativa do óleo essencial contribui para redução de ansiedade, insônia leve e nervosismo. Não causa dependência.</p>
+          </article>
+
+          <article class="beneficio-card" aria-label="Antimicrobiano">
+            <div class="bcard-icon" aria-hidden="true">🦠</div>
+            <h3>Antimicrobiano</h3>
+            <p>Atividade comprovada contra bactérias gram-positivas e gram-negativas. Usado popularmente no tratamento de infecções leves de pele e feridas superficiais.</p>
+          </article>
+
+          <article class="beneficio-card" aria-label="Antioxidante">
+            <div class="bcard-icon" aria-hidden="true">⚡</div>
+            <h3>Antioxidante</h3>
+            <p>Alto teor de flavonoides combate radicais livres, contribuindo para o envelhecimento celular saudável e prevenção de doenças crônicas.</p>
+          </article>
+
+        </div>
+
+        <!-- Compostos ativos -->
+        <div class="compostos">
+          <h3>Principais Compostos Ativos</h3>
+          <div class="compostos-row">
+            <span class="composto-tag">Quercetina</span>
+            <span class="composto-tag">Luteolina</span>
+            <span class="composto-tag">3-O-Metilquercetina</span>
+            <span class="composto-tag">Ácido Clorogênico</span>
+            <span class="composto-tag">Óleo Essencial</span>
+            <span class="composto-tag">Taninos</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         PRECAUÇÕES — toxinas, partes tóxicas, aviso
+    ============================================= -->
+    <section id="precaucoes" class="section section--warn" aria-labelledby="prec-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">05 — Precauções</span>
+          <h2 id="prec-title">Uso Seguro e Advertências</h2>
+        </header>
+
+        <!-- Banner de aviso -->
+        <div class="aviso-banner" role="alert" aria-live="polite">
+          <span class="aviso-icon" aria-hidden="true">⚠️</span>
+          <p>As informações desta página têm caráter educativo. <strong>Consulte sempre um profissional de saúde</strong> antes de iniciar qualquer tratamento com plantas medicinais.</p>
+        </div>
+
+        <div class="prec-grid">
+
+          <article class="prec-card prec-card--red" aria-label="Partes tóxicas">
+            <h3>☠️ Partes com Restrição</h3>
+            <ul>
+              <li><strong>Raízes:</strong> não devem ser usadas — concentração maior de compostos potencialmente irritantes</li>
+              <li><strong>Flores em excesso:</strong> doses elevadas podem causar hepatotoxicidade reversível</li>
+              <li><strong>Uso prolongado:</strong> acima de 30 dias consecutivos sem orientação médica não é recomendado</li>
+            </ul>
+          </article>
+
+          <article class="prec-card prec-card--orange" aria-label="Grupos de risco">
+            <h3>🚫 Contraindicações</h3>
+            <ul>
+              <li><strong>Grávidas:</strong> pode estimular contrações uterinas — contraindicado na gestação</li>
+              <li><strong>Lactantes:</strong> evitar uso, pois os compostos podem passar para o leite materno</li>
+              <li><strong>Crianças abaixo de 6 anos:</strong> não recomendado sem acompanhamento pediátrico</li>
+              <li><strong>Uso de anticoagulantes:</strong> pode potencializar o efeito de medicamentos como warfarina</li>
+            </ul>
+          </article>
+
+          <article class="prec-card prec-card--yellow" aria-label="Toxinas presentes">
+            <h3>🧪 Compostos de Atenção</h3>
+            <ul>
+              <li><strong>Pirrolizidinas (traços):</strong> em uso abusivo, podem causar dano hepático acumulativo</li>
+              <li><strong>Sesquiterpenos:</strong> podem causar reações alérgicas em pessoas sensíveis à família Asteraceae</li>
+              <li><strong>Taninos:</strong> em concentração elevada, podem irritar mucosa gástrica em estômagos sensíveis</li>
+            </ul>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <!-- ============================================================
+       FOOTER — Rodapé com links e aviso legal
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <!-- Coluna de marca / identidade -->
+      <div class="footer-brand footer-col">
+        <div class="logo">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name footer-logo-name">Ervas &amp; Vida</span>
+          </span>
+        </div>
+        <p>Seu guia de referência em plantas medicinais, fitoterapia e saúde natural baseada em evidências.</p>
+      </div>
+      <!-- Coluna de categorias -->
+        <div class="footer-col">
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="error.html">Chás Medicinais</a></li>
+          <li><a href="error.html">Xaropes Naturais</a></li>
+          <li><a href="error.html">Compressas</a></li>
+          <li><a href="error.html">Uso Externo</a></li>
+          <li><a href="error.html">Digestivos</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de informações -->
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="error.html">Sobre nós</a></li>
+          <li><a href="error.html">Como usar</a></li>
+          <li><a href="error.html">Glossário</a></li>
+          <li><a href="error.html">Blog</a></li>
+          <li><a href="error.html">Contato</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de avisos legais -->
+      <div class="footer-col">
+        <h4>Avisos</h4>
+        <ul>
+          <li><a href="error.html">Política de Privacidade</a></li>
+          <li><a href="error.html">Termos de Uso</a></li>
+          <li><a href="error.html">Aviso Legal</a></li>
+          <li><a href="error.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+    </div><!-- /footer-inner -->
+    <!-- Barra inferior com copyright e aviso de saúde -->
+    <div class="footer-bottom">
+      <p>© 2026 Ervas &amp; Vida. Todos os direitos reservados.</p>
+      <p>⚠️ Consulte sempre um profissional de saúde antes de usar plantas medicinais.</p>
+    </div>
+  </footer><!-- /footer -->
+
+  <!-- =============================================
+       SCRIPTS
+       Carregados ao final do body, depois de todo o
+       HTML existir no DOM. plantas3D.js é "module" e
+       importa sua própria cópia do Three.js via Skypack
+       — por isso NÃO há mais o <script> de CDN do
+       three.min.js aqui (evita duas versões conflitando).
+  ============================================= -->
+  <script type="module" src="JS/plantas3D.js"></script>
+  <script src="JS/plantaspage.js"></script>
+
+</body>
+</html>

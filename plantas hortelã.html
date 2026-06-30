@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guia completo da planta medicinal Hortelã — origem, receitas, plantio e benefícios no Rio Grande do Sul." />
+  <title>Hortelã — Planta Medicinal</title>
+
+  <!-- Google Fonts: Playfair Display (display) + Inter (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Folha de estilos principal -->
+  <link rel="stylesheet" href="/CSS/plantasstyle.css" />
+</head>
+<body>
+    <!-- plantaspage.js movido para o fim do body (ver antes de </body>) —
+         scripts no <head>/topo do body bloqueiam a renderização e tentam
+         rodar antes que os elementos do HTML existam -->
+
+ <header role="banner">
+    <div class="header-inner">
+      <!-- ---- Linha superior: Logo + Busca + Ações ---- -->
+      <div class="header-top">
+        <!-- Logo com link para a home -->
+        <a class="logo" href="index.html" aria-label="Ervas & Vida — Página inicial">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name">Ervas &amp; Vida</span>
+            <span class="logo-tagline">Plantas Medicinais</span>
+          </span>
+        </a>
+        <!-- Barra de pesquisa por texto -->
+        <!-- role="search" marca a região como área de busca para leitores de tela -->
+        <div class="search-wrapper" role="search">
+          <!-- Label visualmente oculta, mas lida por leitores de tela -->
+          <label class="visually-hidden" for="search-input" id="search-label">
+            Pesquisar plantas medicinais
+          </label>
+          <div class="search-input-group">
+            <!-- Ícone decorativo (aria-hidden pois é puramente visual) -->
+            <span class="search-icon" aria-hidden="true">
+              <img class="icon" src="ING/icon/315884_gear-icon.svg" alt="Pesquisar" />
+            </span>
+            <input
+              type="search"
+              id="search-input"
+              name="q"
+              placeholder="Pesquisar plantas, usos, propriedades…"
+              autocomplete="off"
+              aria-labelledby="search-label"
+              aria-controls="plants-grid"
+              aria-describedby="search-status"
+            />
+            <button id="search-btn" type="button" aria-label="Executar busca">
+              Buscar
+            </button>
+          </div>
+          <!-- Região live: anuncia resultados para leitores de tela -->
+          <span id="search-status" aria-live="polite" aria-atomic="true" class="visually-hidden"></span>
+        </div>
+        <!-- Botões de ação rápida (favoritos, conta, menu) -->
+        <div class="header-actions" role="group" aria-label="Ações do usuário">
+          <a href="perfil.html" class="icon-btn" aria-label="Minha conta" title="Minha conta">
+            <img class="icon" src="ING/icon/315892_user-profile-icon.svg" alt="Minha conta" />
+          </a>
+        </div>
+      </div><!-- /header-top -->
+      
+    </div><!-- /header-inner -->
+  </header><!-- /header -->
+
+  <main>
+
+    <!-- =============================================
+         HERO — Modelo 3D + nome da planta
+    ============================================= -->
+    <section class="hero-3d" aria-label="Visualização e identificação da planta">
+
+      <!-- Container do canvas 3D — id usado por plantas3D.js -->
+      <div id="container3D" class="container-3d" aria-label="Modelo 3D interativo da Hortelã. Arraste para girar."></div>
+
+      <!-- Crachá de identificação sobre o canvas -->
+      <div class="hero-badge">
+        <p class="eyebrow">Planta Medicinal</p>
+        <h1 id="hero-title">Hortelã</h1>
+        <p class="hero-sci"><em>Mentha spicata</em></p>
+        <p class="hero-sub">Rio Grande do Sul · Não nativa</p>
+      </div>
+
+      <!-- Indicador de scroll -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-dot"></span>
+        <span class="scroll-label">Role para explorar</span>
+      </div>
+    </section>
+
+    <!-- =============================================
+         IDENTIFICAÇÃO — nomes, origem, região
+    ============================================= -->
+    <section id="identificacao" class="section" aria-labelledby="id-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">01 — Identificação</span>
+          <h2 id="id-title">Quem é a Hortelã?</h2>
+        </header>
+
+        <div class="cards-grid">
+
+          <!-- Card: Nomes -->
+          <article class="card card--dark" aria-label="Nomes da planta">
+            <span class="card-icon" aria-hidden="true">🌿</span>
+            <h3>Nomes</h3>
+            <dl class="info-list">
+              <dt>Nome popular</dt>
+              <dd>Hortelã</dd>
+              <dt>Nome científico</dt>
+              <dd><em>Mentha spicata</em></dd>
+              <dt>Família</dt>
+              <dd>Lamiaceae</dd>
+            </dl>
+          </article>
+
+          <!-- Card: Origem e distribuição -->
+          <article class="card card--dark" aria-label="Origem e distribuição">
+            <span class="card-icon" aria-hidden="true">🌍</span>
+            <h3>Origem</h3>
+            <dl class="info-list">
+              <dt>Natural do RS?</dt>
+              <dd><strong class="badge-exotic">Não, exótica naturalizada</strong></dd>
+              <dt>Local de origem</dt>
+              <dd>Europa e Ásia</dd>
+              <dt>Regiões no RS</dt>
+              <dd>Cultivada em quintais urbanos e hortas domésticas em todo o estado</dd>
+            </dl>
+          </article>
+
+          <!-- Card: Descrição botânica -->
+          <article class="card card--dark card--wide" aria-label="Descrição botânica">
+            <span class="card-icon" aria-hidden="true">🔬</span>
+            <h3>Descrição Botânica</h3>
+            <p>Planta herbácea perene, aromática, de 30 a 60 cm de altura, com caule quadrangular e folhas opostas, ovaladas e serrilhadas nas bordas. Suas flores são pequenas, lilases ou brancas, reunidas em espigas terminais. Propaga-se vigorosamente por estolões subterrâneos, podendo se tornar invasiva se não contida em vasos ou canteiros delimitados.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         CULTIVO — sol, plantio, solo
+    ============================================= -->
+    <section id="cultivo" class="section section--alt" aria-labelledby="cultivo-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">02 — Cultivo</span>
+          <h2 id="cultivo-title">Como Cultivar</h2>
+        </header>
+
+        <div class="cultivo-strip">
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">☀️</div>
+            <h3>Luminosidade</h3>
+            <p>Meia-sombra. Tolera sol pleno em climas mais amenos, mas prefere proteção do sol forte da tarde.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">🗓️</div>
+            <h3>Época de Plantio</h3>
+            <p>Primavera. Propagação fácil por estaquia ou divisão de touceiras, com enraizamento rápido em água ou solo.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">🪨</div>
+            <h3>Solo</h3>
+            <p>Solos úmidos, férteis e ricos em matéria orgânica. Adapta-se bem a vasos com boa drenagem.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">💧</div>
+            <h3>Irrigação</h3>
+            <p>Regular e constante. É uma planta que não tolera bem a seca, exigindo solo sempre levemente úmido.</p>
+          </div>
+
+        </div>
+
+        <!-- Partes usadas -->
+        <div class="partes-usadas">
+          <h3>Partes Utilizadas</h3>
+          <ul class="partes-list" role="list">
+            <li><span class="parte-chip parte--folhas">Folhas</span> Folhas frescas ou secas — parte principal usada em chás, xaropes e inalações</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         RECEITAS — passo a passo
+    ============================================= -->
+    <section id="receitas" class="section" aria-labelledby="receitas-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">03 — Receitas Medicinais</span>
+          <h2 id="receitas-title">Remédios Caseiros</h2>
+          <p class="section-desc">Receitas tradicionais do Rio Grande do Sul transmitidas de geração em geração.</p>
+        </header>
+
+        <!-- Tabs de receitas -->
+        <div class="receitas-tabs" role="tablist" aria-label="Receitas">
+          <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" aria-controls="receita-1" id="tab-1">Chá Digestivo</button> <button class="tab-btn" role="tab" aria-selected="false" aria-controls="receita-2" id="tab-2">Inalação para Congestão</button> <button class="tab-btn" role="tab" aria-selected="false" aria-controls="receita-3" id="tab-3">Xarope Caseiro</button>
+        </div>
+
+        <div class="receita-panel" id="receita-1" role="tabpanel" aria-labelledby="tab-1">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Chá de Hortelã para Digestão</h3>
+              <p class="receita-desc">Clássico chá digestivo, indicado após refeições para aliviar sensação de estômago pesado e gases.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>8 a 10 folhas frescas de hortelã (ou 1 colher de sopa secas)</li>
+                  <li>500 ml de água filtrada</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Chá de Hortelã para Digestão">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Ferva a água</strong>
+                  <p>Leve os 500 ml de água ao fogo até a fervura completa.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Adicione as folhas</strong>
+                  <p>Desligue o fogo e acrescente as folhas de hortelã, amassando levemente entre os dedos antes.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Tampe e aguarde</strong>
+                  <p>Tampe o recipiente e deixe em infusão por 8 minutos.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Coe e consuma</strong>
+                  <p>Coe e beba morno após as refeições, até 3x ao dia.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="receita-panel receita-panel--hidden" id="receita-2" role="tabpanel" aria-labelledby="tab-2">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Inalação de Hortelã para Vias Respiratórias</h3>
+              <p class="receita-desc">Vapor aromático usado para aliviar congestão nasal e sensação de vias respiratórias obstruídas.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>Um punhado generoso de folhas frescas de hortelã</li>
+                  <li>1 litro de água quente (não fervente)</li>
+                  <li>Toalha grande</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Inalação de Hortelã para Vias Respiratórias">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Aqueça a água</strong>
+                  <p>Aqueça a água até quase fervura e despeje em uma bacia ou recipiente largo.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Adicione as folhas</strong>
+                  <p>Acrescente as folhas de hortelã esmagadas levemente, liberando o aroma.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Cubra a cabeça com a toalha</strong>
+                  <p>Incline-se sobre o recipiente e cubra a cabeça com a toalha, formando uma tenda.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Inspire o vapor</strong>
+                  <p>Respire o vapor profundamente por 5 a 10 minutos, com os olhos fechados, tomando cuidado para não se queimar.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="receita-panel receita-panel--hidden" id="receita-3" role="tabpanel" aria-labelledby="tab-3">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Xarope de Hortelã para Garganta</h3>
+              <p class="receita-desc">Preparo doce e aromático, usado para suavizar a garganta irritada e auxiliar na tosse seca leve.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>1 xícara de folhas frescas de hortelã</li>
+                  <li>1 xícara de água filtrada</li>
+                  <li>1 xícara de mel ou açúcar mascavo</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Xarope de Hortelã para Garganta">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Prepare a infusão concentrada</strong>
+                  <p>Ferva a água, desligue e adicione as folhas de hortelã, deixando em infusão por 15 minutos.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Coe o líquido</strong>
+                  <p>Coe e reserve apenas o líquido aromatizado, descartando as folhas.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Misture com o mel</strong>
+                  <p>Em fogo baixo, misture o líquido com o mel ou açúcar, mexendo até obter consistência de xarope.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Armazene e use</strong>
+                  <p>Deixe esfriar, guarde em vidro com tampa na geladeira e use 1 colher (sopa) quando necessário, até 3x ao dia.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         SAÚDE — benefícios
+    ============================================= -->
+    <section id="saude" class="section section--alt" aria-labelledby="saude-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">04 — Benefícios</span>
+          <h2 id="saude-title">O Que a Hortelã Faz pelo Corpo</h2>
+        </header>
+
+        <div class="beneficios-grid">
+
+          <article class="beneficio-card" aria-label="Sistema digestivo">
+            <div class="bcard-icon" aria-hidden="true">🫀</div>
+            <h3>Digestiva</h3>
+            <p>Estimula a digestão, alivia gases e sensação de estômago pesado após refeições.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Sistema respiratório">
+            <div class="bcard-icon" aria-hidden="true">🫁</div>
+            <h3>Respiratória</h3>
+            <p>O mentol presente nas folhas auxilia na sensação de desobstrução das vias respiratórias.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Dor de cabeça">
+            <div class="bcard-icon" aria-hidden="true">🧠</div>
+            <h3>Analgésica Leve</h3>
+            <p>Uso tópico ou inalatório tradicional para alívio de dores de cabeça tensionais leves.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Antimicrobiano">
+            <div class="bcard-icon" aria-hidden="true">🦠</div>
+            <h3>Antimicrobiana</h3>
+            <p>Apresenta atividade antibacteriana e antifúngica leve, útil em higiene bucal natural.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Antioxidante">
+            <div class="bcard-icon" aria-hidden="true">⚡</div>
+            <h3>Antioxidante</h3>
+            <p>Rica em compostos fenólicos que combatem radicais livres no organismo.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Espasmos">
+            <div class="bcard-icon" aria-hidden="true">🌬️</div>
+            <h3>Antiespasmódica</h3>
+            <p>Relaxa a musculatura lisa do intestino, sendo tradicionalmente usada para cólicas leves.</p>
+          </article>
+
+        </div>
+
+        <!-- Compostos ativos -->
+        <div class="compostos">
+          <h3>Principais Compostos Ativos</h3>
+          <div class="compostos-row">
+            <span class="composto-tag">Mentol</span>
+            <span class="composto-tag">Carvona</span>
+            <span class="composto-tag">Limoneno</span>
+            <span class="composto-tag">Flavonoides</span>
+            <span class="composto-tag">Ácido Rosmarínico</span>
+            <span class="composto-tag">Taninos</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         PRECAUÇÕES — toxinas, partes tóxicas, aviso
+    ============================================= -->
+    <section id="precaucoes" class="section section--warn" aria-labelledby="prec-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">05 — Precauções</span>
+          <h2 id="prec-title">Uso Seguro e Advertências</h2>
+        </header>
+
+        <!-- Banner de aviso -->
+        <div class="aviso-banner" role="alert" aria-live="polite">
+          <span class="aviso-icon" aria-hidden="true">⚠️</span>
+          <p>As informações desta página têm caráter educativo. <strong>Consulte sempre um profissional de saúde</strong> antes de iniciar qualquer tratamento com plantas medicinais.</p>
+        </div>
+
+        <div class="prec-grid">
+
+          <article class="prec-card prec-card--red" aria-label="Partes tóxicas">
+            <h3>☠️ Partes com Restrição</h3>
+            <ul>
+              <li><strong>Não há partes tóxicas conhecidas</strong> no uso culinário e medicinal tradicional das folhas</li>
+              <li><strong>Óleo essencial concentrado:</strong> não deve ser ingerido puro, apenas as folhas em infusão</li>
+              <li><strong>Uso excessivo e contínuo:</strong> grandes quantidades podem causar irritação na mucosa gástrica em pessoas sensíveis</li>
+            </ul>
+          </article>
+
+          <article class="prec-card prec-card--orange" aria-label="Grupos de risco">
+            <h3>🚫 Contraindicações</h3>
+            <ul>
+              <li><strong>Bebês e crianças muito pequenas:</strong> evitar inalação direta de mentol concentrado, que pode causar desconforto respiratório</li>
+              <li><strong>Pessoas com refluxo gastroesofágico:</strong> o mentol pode relaxar o esfíncter esofágico e piorar os sintomas</li>
+              <li><strong>Uso de medicamentos para pressão:</strong> usar com moderação, monitorando possíveis interações</li>
+            </ul>
+          </article>
+
+          <article class="prec-card prec-card--yellow" aria-label="Toxinas presentes">
+            <h3>🧪 Compostos de Atenção</h3>
+            <ul>
+              <li><strong>Mentol em alta concentração:</strong> pode causar sensação de queimação em mucosas sensíveis</li>
+              <li><strong>Óleo essencial não diluído:</strong> nunca deve ser aplicado puro sobre a pele</li>
+              <li><strong>Carvona:</strong> em doses muito elevadas pode causar desconforto digestivo paradoxal</li>
+            </ul>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <!-- ============================================================
+       FOOTER — Rodapé com links e aviso legal
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <!-- Coluna de marca / identidade -->
+      <div class="footer-brand footer-col">
+        <div class="logo">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name footer-logo-name">Ervas &amp; Vida</span>
+          </span>
+        </div>
+        <p>Seu guia de referência em plantas medicinais, fitoterapia e saúde natural baseada em evidências.</p>
+      </div>
+      <!-- Coluna de categorias -->
+        <div class="footer-col">
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="error.html">Chás Medicinais</a></li>
+          <li><a href="error.html">Xaropes Naturais</a></li>
+          <li><a href="error.html">Compressas</a></li>
+          <li><a href="error.html">Uso Externo</a></li>
+          <li><a href="error.html">Digestivos</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de informações -->
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="error.html">Sobre nós</a></li>
+          <li><a href="error.html">Como usar</a></li>
+          <li><a href="error.html">Glossário</a></li>
+          <li><a href="error.html">Blog</a></li>
+          <li><a href="error.html">Contato</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de avisos legais -->
+      <div class="footer-col">
+        <h4>Avisos</h4>
+        <ul>
+          <li><a href="error.html">Política de Privacidade</a></li>
+          <li><a href="error.html">Termos de Uso</a></li>
+          <li><a href="error.html">Aviso Legal</a></li>
+          <li><a href="error.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+    </div><!-- /footer-inner -->
+    <!-- Barra inferior com copyright e aviso de saúde -->
+    <div class="footer-bottom">
+      <p>© 2026 Ervas &amp; Vida. Todos os direitos reservados.</p>
+      <p>⚠️ Consulte sempre um profissional de saúde antes de usar plantas medicinais.</p>
+    </div>
+  </footer><!-- /footer -->
+
+  <!-- =============================================
+       SCRIPTS
+       Carregados ao final do body, depois de todo o
+       HTML existir no DOM. plantas3D.js é "module" e
+       importa sua própria cópia do Three.js via Skypack
+       — por isso NÃO há mais o <script> de CDN do
+       three.min.js aqui (evita duas versões conflitando).
+  ============================================= -->
+  <script type="module" src="JS/plantas3D.js"></script>
+  <script src="JS/plantaspage.js"></script>
+
+</body>
+</html>

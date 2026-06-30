@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Viewport responsivo para dispositivos móveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SEO: descrição da página para mecanismos de busca -->
+  <meta name="description" content="Descubra o poder das plantas medicinais. Encontre ervas, chás, xaropes e remédios naturais com propriedades terapêuticas comprovadas." />
+  <meta name="keywords" content="plantas medicinais, ervas medicinais, chás, fitoterapia, remédios naturais, saúde natural" />
+  <!-- Cor da barra do navegador no mobile -->
+  <meta name="theme-color" content="#3d2b1f" />
+  <title>Ervas &amp; Vida — Plantas Medicinais</title>
+  <!-- Google Fonts: tipografia premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Folha de estilos externa -->
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+  <!-- Scripts movidos para o fim do body (ver antes de </body>) —
+       carregar aqui no topo travava a página inteira: o script
+       tentava acessar elementos do carrossel/grid/filtros antes
+       deles existirem no DOM -->
+  <a class="skip-link" href="#main-content">Ir para o conteúdo principal</a>
+  <!-- ============================================================
+       HEADER — Cabeçalho fixo com logo, busca e filtros
+  ============================================================ -->
+  <header role="banner">
+    <div class="header-inner">
+      <!-- ---- Linha superior: Logo + Busca + Ações ---- -->
+      <div class="header-top">
+        <!-- Logo com link para a home -->
+        <a class="logo" href="/" aria-label="Ervas & Vida — Página inicial">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name">Ervas &amp; Vida</span>
+            <span class="logo-tagline">Plantas Medicinais</span>
+          </span>
+        </a>
+        <!-- Barra de pesquisa por texto -->
+        <!-- role="search" marca a região como área de busca para leitores de tela -->
+        <div class="search-wrapper" role="search">
+          <!-- Label visualmente oculta, mas lida por leitores de tela -->
+          <label class="visually-hidden" for="search-input" id="search-label">
+            Pesquisar plantas medicinais
+          </label>
+          <div class="search-input-group">
+            <!-- Ícone decorativo (aria-hidden pois é puramente visual) -->
+            <span class="search-icon" aria-hidden="true">
+              <img src="ING/icon/315884_gear-icon.svg" alt="Pesquisar" />
+            </span>
+            <input
+              type="search"
+              id="search-input"
+              name="q"
+              placeholder="Pesquisar plantas, usos, propriedades…"
+              autocomplete="off"
+              aria-labelledby="search-label"
+              aria-controls="plants-grid"
+              aria-describedby="search-status"
+            />
+            <button id="search-btn" type="button" aria-label="Executar busca">
+              Buscar
+            </button>
+          </div>
+          <!-- Região live: anuncia resultados para leitores de tela -->
+          <span id="search-status" aria-live="polite" aria-atomic="true" class="visually-hidden"></span>
+        </div>
+        <!-- Botões de ação rápida (favoritos, conta, menu) -->
+        <div class="header-actions" role="group" aria-label="Ações do usuário">
+          <a href="perfil.html" class="icon-btn" aria-label="Minha conta" title="Minha conta">
+            <img class="icon" src="ING/icon/315892_user-profile-icon.svg" alt="Minha conta" color="#D68035"/>
+          </a>
+        </div>
+      </div><!-- /header-top -->
+      <!-- ---- Barra de filtros por categoria ---- -->
+      <!-- nav com aria-label descreve a região de navegação -->
+      <nav class="filter-bar" aria-label="Filtros por categoria">
+        <!-- role="group" agrupa os chips relacionados -->
+        <div class="filter-bar-inner" role="group" aria-label="Selecionar categorias de uso">
+          <!-- Rótulo visual dos filtros (aria-hidden pois o nav já tem label) -->
+          <span class="filter-label" aria-hidden="true">Filtrar:</span>
+          <div class="filter-sep" aria-hidden="true"></div>
+          <!-- Chips de filtro: aria-pressed indica estado ativo/inativo -->
+          <button class="filter-chip" data-filter="all"       aria-pressed="true"  id="filter-all">Todos</button>
+          <button class="filter-chip" data-filter="chá"       aria-pressed="false" id="filter-cha">Chá</button>
+          <button class="filter-chip" data-filter="xarope"    aria-pressed="false" id="filter-xarope">Xarope</button>
+          <button class="filter-chip" data-filter="compressa" aria-pressed="false" id="filter-compressa">Compressa</button>
+          <button class="filter-chip" data-filter="gel"       aria-pressed="false" id="filter-gel">Gel</button>
+          <button class="filter-chip" data-filter="polmada"   aria-pressed="false" id="filter-polmada">polmada</button>
+          <button class="filter-chip" data-filter="externa"   aria-pressed="false" id="filter-externa">Uso Externo</button>
+          <button class="filter-chip" data-filter="interno"   aria-pressed="false" id="filter-interno">Uso Interno</button>
+          <button class="filter-chip" data-filter="digestivo" aria-pressed="false" id="filter-digestivo">Digestivo</button>
+          <button class="filter-chip" data-filter="calmante"  aria-pressed="false" id="filter-calmante">Calmante</button>
+          <button class="filter-chip" data-filter="anti-inflamatorio" aria-pressed="false" id="filter-anti-inflamatorio">Anti-inflamatório</button>
+        
+        </div>
+      </nav><!-- /filter-bar -->
+    </div><!-- /header-inner -->
+  </header><!-- /header -->
+  <!-- ============================================================
+       MAIN — Conteúdo principal da página
+  ============================================================ -->
+  <main id="main-content">
+    <!--Botão para acionar câmera/arquivos para pesquisa por imagem-->
+      <a href="scanner.html" class="scanner" aria-label="Identificar planta por foto">
+        <img src="ING/icon/photo-camera_icon-icons.com_65001.svg" alt="identificar planta">
+      </a>
+    <!-- ---- Seção do Carrossel ---- -->
+    <!-- aria-roledescription descreve o tipo de widget para leitores de tela -->
+    <section class="carousel-section" aria-label="Destaques em carrossel">
+      <div
+        class="carousel"
+        id="carousel"
+        aria-roledescription="carrossel"
+        aria-label="Destaques de plantas medicinais"
+      >
+        <!-- Track: faixa deslizante que contém os slides -->
+        <!-- aria-live="polite" anuncia mudanças de slide de forma não intrusiva -->
+        <div class="carousel-track" id="carousel-track" aria-live="polite" aria-atomic="false">
+          <!-- Slide 1: Jardim Medicinal -->
+          <!-- role="group" + aria-roledescription="slide" identifica cada slide -->
+          <article
+            class="carousel-slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="1 de 3: Jardim Medicinal"
+          >
+            <img
+              src="ING/Slides/carqueja.jpg"
+              alt="Mesa de madeira com um cópo de chá e ervas frescas ao redor, destacando a planta Carqueja"
+              loading="eager"
+            />
+            <div class="slide-overlay">
+              <div class="slide-content">
+                <span class="slide-badge">Em destaque</span>
+                <h2 class="slide-title">O Poder da<br/>Natureza Cura</h2>
+                <p class="slide-desc">Descubra os benefícios da Carqueja.</p>
+                <a href="plantas/carqueja.html" class="slide-cta" aria-label="Explorar o catálogo de plantas medicinais">
+                  Veja a planta →
+                </a>
+              </div>
+            </div>
+          </article>
+          <!-- Slide 2: Preparações Fitoterápicas -->
+          <article
+            class="carousel-slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="2 de 3: Preparações Fitoterápicas"
+          >
+            <img
+              src="ING/Slides/images (3).jpg"
+              alt="Um ramo de ortelã fresca"
+              loading="lazy"
+            />
+            <div class="slide-overlay">
+              <div class="slide-content">
+                <span class="slide-badge">Fitoterapia</span>
+                <h2 class="slide-title">Sabedoria<br/>Ancestral</h2>
+                <p class="slide-desc">Aprenda receitas tradicionais com ervas medicinais.</p>
+                <a href="plantas/plantas guaco.html" class="slide-cta" aria-label="Ver receitas fitoterápicas">Ver a planta →</a>
+              </div>
+            </div>
+          </article>
+          <!-- Slide 3: Chás e Infusões -->
+          <article
+            class="carousel-slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="3 de 3: Chás e Infusões"
+          >
+            <img
+              src="ING/Slides/babosa.jpg"
+              alt="Um pode com extrato de babosa com pedaços da planta ao redor em cima de uma superfície de branca"
+              loading="lazy"
+            />
+            <div class="slide-overlay">
+              <div class="slide-content">
+                <span class="slide-badge accent">Belesa</span>
+                <h2 class="slide-title">Mais que estética<br/>É saúde</h2>
+                <p class="slide-desc">Descubra os benefícios da Babosa para a pele e a saúde em geral.</p>
+                <a href="error.html" class="slide-cta" aria-label="Ver guia completo de chás medicinais">Veja a planta →</a>
+              </div>
+            </div>
+          </article>
+        </div><!-- /carousel-track -->
+        <!-- Botões de navegação anterior / próximo -->
+        <button
+          class="carousel-btn"
+          id="carousel-prev"
+          type="button"
+          aria-label="Slide anterior"
+          aria-controls="carousel-track"
+        >‹</button>
+        <button
+          class="carousel-btn"
+          id="carousel-next"
+          type="button"
+          aria-label="Próximo slide"
+          aria-controls="carousel-track"
+        >›</button>
+      </div><!-- /carousel -->
+      <!-- Indicadores de slide (dots) -->
+      <!-- role="tablist" + role="tab" semântica de abas para os dots -->
+      <div class="carousel-dots" role="tablist" aria-label="Selecionar slide">
+        <button class="carousel-dot active" role="tab" aria-selected="true"  aria-label="Slide 1" data-slide="0" id="dot-0"></button>
+        <button class="carousel-dot"        role="tab" aria-selected="false" aria-label="Slide 2" data-slide="1" id="dot-1"></button>
+        <button class="carousel-dot"        role="tab" aria-selected="false" aria-label="Slide 3" data-slide="2" id="dot-2"></button>
+      </div>
+    </section><!-- /carousel-section -->
+    <!-- ---- Seção do Catálogo de Plantas ---- -->
+    <!-- aria-labelledby conecta a section ao seu h1 correspondente -->
+    <section aria-labelledby="plantas-heading">
+      <div class="section-header">
+        <!-- H1 único da página (boas práticas de SEO e acessibilidade) -->
+        <h1 class="section-title" id="plantas-heading">Catálogo de Plantas</h1>
+      </div>
+      <!-- Grid de cards inseridos dinamicamente pelo JavaScript -->
+      <!-- aria-live="polite" anuncia mudanças ao filtrar/buscar -->
+      <div
+        class="plants-grid"
+        id="plants-grid"
+        role="list"
+        aria-label="Lista de plantas medicinais"
+        aria-live="polite"
+        aria-atomic="false"
+      >
+        <!-- Os cards são gerados por script.js -->
+      </div>
+      <!-- Mensagem exibida quando nenhuma planta é encontrada -->
+      <div class="no-results" id="no-results" aria-live="polite" role="status">
+        <div class="no-results-icon" aria-hidden="true">🌿</div>
+        <h3>Nenhuma planta encontrada</h3>
+        <p>Tente outros termos de busca ou remova alguns filtros.</p>
+      </div>
+    </section><!-- /catálogo -->
+  </main><!-- /main -->
+  <!-- ============================================================
+       FOOTER — Rodapé com links e aviso legal
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <!-- Coluna de marca / identidade -->
+      <div class="footer-brand footer-col">
+        <div class="logo">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name footer-logo-name">Ervas &amp; Vida</span>
+          </span>
+        </div>
+        <p>Seu guia de referência em plantas medicinais, fitoterapia e saúde natural baseada em evidências.</p>
+      </div>
+      <!-- Coluna de categorias -->
+      <div class="footer-col">
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="/error.html">Chás Medicinais</a></li>
+          <li><a href="/error.html">Xaropes Naturais</a></li>
+          <li><a href="/error.html">Compressas</a></li>
+          <li><a href="/error.html">Uso Externo</a></li>
+          <li><a href="/error.html">Digestivos</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de informações -->
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="/error.html">Sobre nós</a></li>
+          <li><a href="/error.html">Como usar</a></li>
+          <li><a href="/error.html">Glossário</a></li>
+          <li><a href="/error.html">Blog</a></li>
+          <li><a href="/error.html">Contato</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de avisos legais -->
+      <div class="footer-col">
+        <h4>Avisos</h4>
+        <ul>
+          <li><a href="/error.html">Política de Privacidade</a></li>
+          <li><a href="/error.html">Termos de Uso</a></li>
+          <li><a href="/error.html">Aviso Legal</a></li>
+          <li><a href="/error.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+    </div><!-- /footer-inner -->
+    <!-- Barra inferior com copyright e aviso de saúde -->
+    <div class="footer-bottom">
+      <p>© 2026 Ervas &amp; Vida. Todos os direitos reservados.</p>
+      <p>⚠️ Consulte sempre um profissional de saúde antes de usar plantas medicinais.</p>
+    </div>
+  </footer><!-- /footer -->
+  <!-- Scripts carregados ao final do body, depois de todo o HTML
+       existir no DOM. Ordem importa: auth.js e plants-data.js
+       precisam vir antes de homepage.js, que depende dos dois -->
+  <script src="JS/auth.js"></script>
+  <script src="JS/Plants data.js"></script>
+  <script src="JS/homepage.js"></script>
+</body>
+</html>

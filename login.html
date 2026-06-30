@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Entrar – Jardim das Plantas</title>
+
+  <!-- Mesma família tipográfica usada nas páginas de Inscrição/Marcela -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+  <!-- Reaproveita o mesmo CSS da inscrição — os dois formulários
+       compartilham a mesma identidade visual -->
+  <link rel="stylesheet" href="CSS/inscricao.css" />
+</head>
+<body>
+
+  <main class="page">
+
+    <!-- ========================
+         ILUSTRAÇÃO PRINCIPAL
+    ======================== -->
+    <div class="hero-image" aria-hidden="true">
+      <img src="./ING/gif planta.gif"
+           alt=""
+           class="hero-image__img" />
+    </div>
+
+    <!-- ========================
+         CABEÇALHO DE TEXTO
+    ======================== -->
+    <header class="page__header">
+      <h1 class="page__title">Bem-vindo de volta</h1>
+      <p class="page__subtitle">Entre para acessar seus favoritos e seu perfil</p>
+    </header>
+
+    <!-- ========================
+         FORMULÁRIO DE LOGIN
+    ======================== -->
+    <form class="signup-form" id="loginForm" novalidate>
+
+      <!-- Campo Email -->
+      <div class="field">
+        <label for="email" class="field__label">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="field__input"
+          placeholder="Email"
+          autocomplete="email"
+          required
+          aria-describedby="email-error"
+        />
+        <span class="field__error" id="email-error" role="alert"></span>
+      </div>
+
+      <!-- Campo Senha -->
+      <div class="field">
+        <label for="senha" class="field__label">Senha</label>
+        <div class="field__password-wrap">
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            class="field__input"
+            placeholder="Senha"
+            autocomplete="current-password"
+            required
+            aria-describedby="senha-error"
+          />
+          <button type="button" class="field__toggle-visibility" id="toggleSenha" aria-label="Mostrar senha" aria-pressed="false">
+            <span class="field__toggle-icon" aria-hidden="true">👁</span>
+          </button>
+        </div>
+        <span class="field__error" id="senha-error" role="alert"></span>
+      </div>
+
+      <!-- Botão de envio -->
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span class="btn-submit__text">Entrar</span>
+        <span class="btn-submit__spinner" aria-hidden="true"></span>
+      </button>
+
+      <!-- Mensagem de sucesso/erro geral (escondida até o envio) -->
+      <p class="form-success" id="formSuccess" role="status" aria-live="polite"></p>
+
+      <!-- Link para quem ainda não tem conta -->
+      <p class="form-switch">
+        Ainda não tem conta?
+        <a href="inscricao.html">Inscreva-se</a>
+      </p>
+
+    </form>
+
+  </main>
+
+  <!-- auth.js precisa vir ANTES de login.js, que depende das funções dele -->
+  <script src="JS/auth.js"></script>
+  <script src="JS/login.js"></script>
+</body>
+</html>

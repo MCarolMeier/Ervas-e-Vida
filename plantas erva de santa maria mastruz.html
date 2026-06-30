@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guia completo da planta medicinal Erva-de-santa-maria (Mastruz) — origem, receitas, plantio e benefícios no Rio Grande do Sul." />
+  <title>Erva-de-santa-maria (Mastruz) — Planta Medicinal</title>
+
+  <!-- Google Fonts: Playfair Display (display) + Inter (corpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Folha de estilos principal -->
+  <link rel="stylesheet" href="CSS/plantasstyle.css" />
+</head>
+<body>
+    <!-- plantaspage.js movido para o fim do body (ver antes de </body>) —
+         scripts no <head>/topo do body bloqueiam a renderização e tentam
+         rodar antes que os elementos do HTML existam -->
+
+ <header role="banner">
+    <div class="header-inner">
+      <!-- ---- Linha superior: Logo + Busca + Ações ---- -->
+      <div class="header-top">
+        <!-- Logo com link para a home -->
+        <a class="logo" href="index.html" aria-label="Ervas & Vida — Página inicial">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name">Ervas &amp; Vida</span>
+            <span class="logo-tagline">Plantas Medicinais</span>
+          </span>
+        </a>
+        <!-- Barra de pesquisa por texto -->
+        <!-- role="search" marca a região como área de busca para leitores de tela -->
+        <div class="search-wrapper" role="search">
+          <!-- Label visualmente oculta, mas lida por leitores de tela -->
+          <label class="visually-hidden" for="search-input" id="search-label">
+            Pesquisar plantas medicinais
+          </label>
+          <div class="search-input-group">
+            <!-- Ícone decorativo (aria-hidden pois é puramente visual) -->
+            <span class="search-icon" aria-hidden="true">
+              <img class="icon" src="ING/icon/315884_gear-icon.svg" alt="Pesquisar" />
+            </span>
+            <input
+              type="search"
+              id="search-input"
+              name="q"
+              placeholder="Pesquisar plantas, usos, propriedades…"
+              autocomplete="off"
+              aria-labelledby="search-label"
+              aria-controls="plants-grid"
+              aria-describedby="search-status"
+            />
+            <button id="search-btn" type="button" aria-label="Executar busca">
+              Buscar
+            </button>
+          </div>
+          <!-- Região live: anuncia resultados para leitores de tela -->
+          <span id="search-status" aria-live="polite" aria-atomic="true" class="visually-hidden"></span>
+        </div>
+        <!-- Botões de ação rápida (favoritos, conta, menu) -->
+        <div class="header-actions" role="group" aria-label="Ações do usuário">
+          <a href="perfil.html" class="icon-btn" aria-label="Minha conta" title="Minha conta">
+            <img class="icon" src="ING/icon/315892_user-profile-icon.svg" alt="Minha conta" />
+          </a>
+        </div>
+      </div><!-- /header-top -->
+      
+    </div><!-- /header-inner -->
+  </header><!-- /header -->
+
+  <main>
+
+    <!-- =============================================
+         HERO — Modelo 3D + nome da planta
+    ============================================= -->
+    <section class="hero-3d" aria-label="Visualização e identificação da planta">
+
+      <!-- Container do canvas 3D — id usado por plantas3D.js -->
+      <div id="container3D" class="container-3d" aria-label="Modelo 3D interativo da Erva-de-santa-maria (Mastruz). Arraste para girar."></div>
+
+      <!-- Crachá de identificação sobre o canvas -->
+      <div class="hero-badge">
+        <p class="eyebrow">Planta Medicinal</p>
+        <h1 id="hero-title">Erva-de-santa-maria (Mastruz)</h1>
+        <p class="hero-sci"><em>Chenopodium ambrosioides</em></p>
+        <p class="hero-sub">Rio Grande do Sul · Nativa</p>
+      </div>
+
+      <!-- Indicador de scroll -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-dot"></span>
+        <span class="scroll-label">Role para explorar</span>
+      </div>
+    </section>
+
+    <!-- =============================================
+         IDENTIFICAÇÃO — nomes, origem, região
+    ============================================= -->
+    <section id="identificacao" class="section" aria-labelledby="id-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">01 — Identificação</span>
+          <h2 id="id-title">Quem é a Erva-de-santa-maria (Mastruz)?</h2>
+        </header>
+
+        <div class="cards-grid">
+
+          <!-- Card: Nomes -->
+          <article class="card card--dark" aria-label="Nomes da planta">
+            <span class="card-icon" aria-hidden="true">🌿</span>
+            <h3>Nomes</h3>
+            <dl class="info-list">
+              <dt>Nome popular</dt>
+              <dd>Erva-de-santa-maria (Mastruz)</dd>
+              <dt>Nome científico</dt>
+              <dd><em>Chenopodium ambrosioides</em></dd>
+              <dt>Família</dt>
+              <dd>Amaranthaceae</dd>
+            </dl>
+          </article>
+
+          <!-- Card: Origem e distribuição -->
+          <article class="card card--dark" aria-label="Origem e distribuição">
+            <span class="card-icon" aria-hidden="true">🌍</span>
+            <h3>Origem</h3>
+            <dl class="info-list">
+              <dt>Natural do RS?</dt>
+              <dd><strong class="badge-native">Sim, nativa</strong></dd>
+              <dt>Local de origem</dt>
+              <dd>América Tropical</dd>
+              <dt>Regiões no RS</dt>
+              <dd>Quintais e áreas rurais em diversas regiões do estado, frequentemente cultivada próxima às residências</dd>
+            </dl>
+          </article>
+
+          <!-- Card: Descrição botânica -->
+          <article class="card card--dark card--wide" aria-label="Descrição botânica">
+            <span class="card-icon" aria-hidden="true">🔬</span>
+            <h3>Descrição Botânica</h3>
+            <p>Planta herbácea aromática, de 50 cm a 1 metro de altura, com caule ramificado e folhas alternadas, lanceoladas e com bordas irregularmente dentadas. Exala odor forte e característico ao ser tocada, frequentemente descrito como almiscarado. Suas flores são minúsculas, esverdeadas, dispostas em espigas ao longo dos ramos superiores.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         CULTIVO — sol, plantio, solo
+    ============================================= -->
+    <section id="cultivo" class="section section--alt" aria-labelledby="cultivo-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">02 — Cultivo</span>
+          <h2 id="cultivo-title">Como Cultivar</h2>
+        </header>
+
+        <div class="cultivo-strip">
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">☀️</div>
+            <h3>Luminosidade</h3>
+            <p>Pleno sol. Planta rústica, comum em quintais e terrenos com boa exposição solar.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">🗓️</div>
+            <h3>Época de Plantio</h3>
+            <p>Primavera. Propagação por semeadura direta; também se autossemeia com facilidade em solo cultivado.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">🪨</div>
+            <h3>Solo</h3>
+            <p>Solos comuns, férteis e bem drenados. Planta resistente, adaptada a diversos tipos de solo de quintal.</p>
+          </div>
+
+          <div class="cultivo-divider" aria-hidden="true"></div>
+
+          <div class="cultivo-item">
+            <div class="cultivo-icon" aria-hidden="true">💧</div>
+            <h3>Irrigação</h3>
+            <p>Moderada. Tolera períodos curtos de seca uma vez estabelecida, mas se beneficia de regas regulares na fase inicial.</p>
+          </div>
+
+        </div>
+
+        <!-- Partes usadas -->
+        <div class="partes-usadas">
+          <h3>Partes Utilizadas</h3>
+          <ul class="partes-list" role="list">
+            <li><span class="parte-chip parte--folhas">Folhas</span> Folhas frescas — parte usada tradicionalmente em xaropes e chás</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         RECEITAS — passo a passo
+    ============================================= -->
+    <section id="receitas" class="section" aria-labelledby="receitas-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">03 — Receitas Medicinais</span>
+          <h2 id="receitas-title">Remédios Caseiros</h2>
+          <p class="section-desc">Receitas tradicionais do Rio Grande do Sul transmitidas de geração em geração.</p>
+        </header>
+
+        <!-- Tabs de receitas -->
+        <div class="receitas-tabs" role="tablist" aria-label="Receitas">
+          <button class="tab-btn tab-btn--active" role="tab" aria-selected="true" aria-controls="receita-1" id="tab-1">Xarope Vermífugo</button> <button class="tab-btn" role="tab" aria-selected="false" aria-controls="receita-2" id="tab-2">Chá Expectorante</button> <button class="tab-btn" role="tab" aria-selected="false" aria-controls="receita-3" id="tab-3">Uso Tópico</button>
+        </div>
+
+        <div class="receita-panel" id="receita-1" role="tabpanel" aria-labelledby="tab-1">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Xarope Tradicional de Mastruz</h3>
+              <p class="receita-desc">Uso histórico mais conhecido da planta: preparo caseiro tradicionalmente empregado contra vermes intestinais, sempre com extrema cautela quanto à dosagem.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>5 folhas frescas de mastruz, bem lavadas</li>
+                  <li>200 ml de água filtrada</li>
+                  <li>100 g de mel puro</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Xarope Tradicional de Mastruz">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Bata as folhas com água</strong>
+                  <p>No liquidificador, bata as folhas frescas com a água até obter um líquido homogêneo.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Coe o líquido</strong>
+                  <p>Coe a mistura em pano fino ou coador, separando o suco das fibras vegetais.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Misture com o mel</strong>
+                  <p>Misture o suco coado com o mel, mexendo bem até incorporar completamente.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Armazene e use com extrema moderação</strong>
+                  <p>Guarde na geladeira por no máximo 3 dias. Use apenas pequenas quantidades, e somente sob orientação profissional, devido à toxicidade da planta em excesso.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="receita-panel receita-panel--hidden" id="receita-2" role="tabpanel" aria-labelledby="tab-2">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Chá Suave de Mastruz para Vias Respiratórias</h3>
+              <p class="receita-desc">Versão mais diluída, usada tradicionalmente como apoio em casos de tosse e congestão respiratória leve.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>2 a 3 folhas frescas de mastruz</li>
+                  <li>500 ml de água filtrada</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Chá Suave de Mastruz para Vias Respiratórias">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Ferva a água</strong>
+                  <p>Leve os 500 ml de água ao fogo até a fervura completa.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Adicione as folhas</strong>
+                  <p>Desligue o fogo e acrescente as folhas frescas, em pequena quantidade.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Tampe e aguarde</strong>
+                  <p>Tampe o recipiente e deixe em infusão por apenas 5 minutos — o tempo curto evita concentração excessiva.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Coe e consuma com moderação</strong>
+                  <p>Coe bem e beba pequenas quantidades, no máximo 1 xícara ao dia, com acompanhamento profissional.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="receita-panel receita-panel--hidden" id="receita-3" role="tabpanel" aria-labelledby="tab-3">
+          <div class="receita-grid">
+            <div class="receita-info">
+              <h3>Compressa de Mastruz para Picadas de Insetos</h3>
+              <p class="receita-desc">Aplicação externa tradicional, usada para aliviar coceira e inflamação causadas por picadas de insetos.</p>
+              <div class="ingredientes">
+                <h4>Ingredientes</h4>
+                <ul>
+                  <li>4 a 5 folhas frescas de mastruz</li>
+                  <li>Água suficiente para amassar</li>
+                </ul>
+              </div>
+            </div>
+            <ol class="passos" aria-label="Passo a passo: Compressa de Mastruz para Picadas de Insetos">
+              <li>
+                <span class="passo-num" aria-hidden="true">01</span>
+                <div>
+                  <strong>Lave bem as folhas</strong>
+                  <p>Lave as folhas frescas em água corrente para remover impurezas.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">02</span>
+                <div>
+                  <strong>Amasse as folhas</strong>
+                  <p>Amasse as folhas com um pouco de água até formar uma pasta espessa.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">03</span>
+                <div>
+                  <strong>Aplique na área afetada</strong>
+                  <p>Aplique a pasta diretamente sobre a picada ou área irritada da pele.</p>
+                </div>
+              </li>
+              <li>
+                <span class="passo-num" aria-hidden="true">04</span>
+                <div>
+                  <strong>Deixe agir e enxágue</strong>
+                  <p>Deixe agir por 10 a 15 minutos e enxágue com água fresca. Evite contato com mucosas e olhos.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         SAÚDE — benefícios
+    ============================================= -->
+    <section id="saude" class="section section--alt" aria-labelledby="saude-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">04 — Benefícios</span>
+          <h2 id="saude-title">O Que a Erva-de-santa-maria (Mastruz) Faz pelo Corpo</h2>
+        </header>
+
+        <div class="beneficios-grid">
+
+          <article class="beneficio-card" aria-label="Vermes intestinais">
+            <div class="bcard-icon" aria-hidden="true">🪱</div>
+            <h3>Vermífuga Tradicional</h3>
+            <p>Uso histórico mais conhecido da planta, empregada tradicionalmente no combate a parasitas intestinais — porém com necessidade de extrema cautela na dosagem.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Sistema respiratório">
+            <div class="bcard-icon" aria-hidden="true">🫁</div>
+            <h3>Expectorante</h3>
+            <p>Uso popular como apoio no alívio de tosse e congestão das vias respiratórias, em doses muito diluídas.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Picadas e irritações">
+            <div class="bcard-icon" aria-hidden="true">🩹</div>
+            <h3>Anti-inflamatória Tópica</h3>
+            <p>Aplicação externa tradicional para aliviar coceira e inflamação de picadas de insetos.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Antimicrobiano">
+            <div class="bcard-icon" aria-hidden="true">🦠</div>
+            <h3>Antimicrobiana</h3>
+            <p>Apresenta atividade antimicrobiana comprovada em estudos, relacionada ao seu óleo essencial característico.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Antioxidante">
+            <div class="bcard-icon" aria-hidden="true">⚡</div>
+            <h3>Antioxidante</h3>
+            <p>Compostos fenólicos presentes nas folhas contribuem para atividade antioxidante geral.</p>
+          </article>
+          <article class="beneficio-card" aria-label="Espasmos">
+            <div class="bcard-icon" aria-hidden="true">🌬️</div>
+            <h3>Antiespasmódica</h3>
+            <p>Uso tradicional para alívio de cólicas e espasmos abdominais, sempre em quantidades mínimas.</p>
+          </article>
+
+        </div>
+
+        <!-- Compostos ativos -->
+        <div class="compostos">
+          <h3>Principais Compostos Ativos</h3>
+          <div class="compostos-row">
+            <span class="composto-tag">Ascaridol</span>
+            <span class="composto-tag">Limoneno</span>
+            <span class="composto-tag">p-Cimeno</span>
+            <span class="composto-tag">Flavonoides</span>
+            <span class="composto-tag">Saponinas</span>
+            <span class="composto-tag">Óleo Essencial</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================
+         PRECAUÇÕES — toxinas, partes tóxicas, aviso
+    ============================================= -->
+    <section id="precaucoes" class="section section--warn" aria-labelledby="prec-title">
+      <div class="section-inner">
+
+        <header class="section-header">
+          <span class="section-tag">05 — Precauções</span>
+          <h2 id="prec-title">Uso Seguro e Advertências</h2>
+        </header>
+
+        <!-- Banner de aviso -->
+        <div class="aviso-banner" role="alert" aria-live="polite">
+          <span class="aviso-icon" aria-hidden="true">⚠️</span>
+          <p>As informações desta página têm caráter educativo. <strong>Consulte sempre um profissional de saúde</strong> antes de iniciar qualquer tratamento com plantas medicinais.</p>
+        </div>
+
+        <div class="prec-grid">
+
+          <article class="prec-card prec-card--red" aria-label="Partes tóxicas">
+            <h3>☠️ Partes com Restrição</h3>
+            <ul>
+              <li><strong>Óleo essencial (ascaridol):</strong> é a principal toxina da planta — altamente concentrado, pode causar intoxicação grave mesmo em pequenas quantidades quando extraído puro</li>
+              <li><strong>Sementes e óleo essencial:</strong> partes de maior risco, nunca devem ser ingeridas diretamente sem extremo cuidado profissional</li>
+              <li><strong>Uso interno em geral:</strong> esta é uma das plantas mais tóxicas desta lista quando usada incorretamente — doses excessivas podem causar convulsões, problemas cardíacos e até ser fatais</li>
+            </ul>
+          </article>
+
+          <article class="prec-card prec-card--orange" aria-label="Grupos de risco">
+            <h3>🚫 Contraindicações</h3>
+            <ul>
+              <li><strong>Grávidas:</strong> uso completamente contraindicado — pode causar aborto e malformações fetais</li>
+              <li><strong>Lactantes:</strong> contraindicado, pois os compostos tóxicos podem passar para o leite materno</li>
+              <li><strong>Crianças:</strong> uso interno extremamente desencorajado sem supervisão médica direta, devido ao alto risco de intoxicação</li>
+              <li><strong>Pessoas com problemas cardíacos, renais ou hepáticos:</strong> evitar completamente o uso interno desta planta</li>
+              <li><strong>Qualquer uso interno prolongado:</strong> não deve ocorrer sem acompanhamento médico rigoroso, dada a toxicidade acumulativa</li>
+            </ul>
+          </article>
+
+          <article class="prec-card prec-card--yellow" aria-label="Toxinas presentes">
+            <h3>🧪 Compostos de Atenção</h3>
+            <ul>
+              <li><strong>Ascaridol:</strong> principal composto tóxico do óleo essencial, responsável pela maioria dos casos de intoxicação relatados na literatura médica</li>
+              <li><strong>Concentração variável entre plantas:</strong> a quantidade de óleo essencial tóxico pode variar muito entre exemplares, tornando a dosagem segura imprevisível em preparos caseiros</li>
+              <li><strong>Risco de uso popular incorreto:</strong> por ser tradicionalmente usada sem padronização de dose, há histórico de intoxicações, especialmente em crianças — recomenda-se extrema cautela ou evitar o uso interno</li>
+            </ul>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <!-- ============================================================
+       FOOTER — Rodapé com links e aviso legal
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <!-- Coluna de marca / identidade -->
+      <div class="footer-brand footer-col">
+        <div class="logo">
+          <span class="logo-icon" aria-hidden="true">🌿</span>
+          <span class="logo-text">
+            <span class="logo-name footer-logo-name">Ervas &amp; Vida</span>
+          </span>
+        </div>
+        <p>Seu guia de referência em plantas medicinais, fitoterapia e saúde natural baseada em evidências.</p>
+      </div>
+      <!-- Coluna de categorias -->
+        <div class="footer-col">
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="error.html">Chás Medicinais</a></li>
+          <li><a href="error.html">Xaropes Naturais</a></li>
+          <li><a href="error.html">Compressas</a></li>
+          <li><a href="error.html">Uso Externo</a></li>
+          <li><a href="error.html">Digestivos</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de informações -->
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="error.html">Sobre nós</a></li>
+          <li><a href="error.html">Como usar</a></li>
+          <li><a href="error.html">Glossário</a></li>
+          <li><a href="error.html">Blog</a></li>
+          <li><a href="error.html">Contato</a></li>
+        </ul>
+      </div>
+      <!-- Coluna de avisos legais -->
+      <div class="footer-col">
+        <h4>Avisos</h4>
+        <ul>
+          <li><a href="error.html">Política de Privacidade</a></li>
+          <li><a href="error.html">Termos de Uso</a></li>
+          <li><a href="error.html">Aviso Legal</a></li>
+          <li><a href="error.html">Acessibilidade</a></li>
+        </ul>
+      </div>
+    </div><!-- /footer-inner -->
+    <!-- Barra inferior com copyright e aviso de saúde -->
+    <div class="footer-bottom">
+      <p>© 2026 Ervas &amp; Vida. Todos os direitos reservados.</p>
+      <p>⚠️ Consulte sempre um profissional de saúde antes de usar plantas medicinais.</p>
+    </div>
+  </footer><!-- /footer -->
+
+  <!-- =============================================
+       SCRIPTS
+       Carregados ao final do body, depois de todo o
+       HTML existir no DOM. plantas3D.js é "module" e
+       importa sua própria cópia do Three.js via Skypack
+       — por isso NÃO há mais o <script> de CDN do
+       three.min.js aqui (evita duas versões conflitando).
+  ============================================= -->
+  <script type="module" src="JS/plantas3D.js"></script>
+  <script src="JS/plantaspage.js"></script>
+
+</body>
+</html>

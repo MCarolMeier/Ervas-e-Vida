@@ -1,0 +1,1142 @@
+/* ==============================================
+   MARCELA MEDICINAL — style.css
+   Design: botânico-terroso, mobile-first
+   Paleta: bege campos (#E8DFC4), marrom musgo (#6B5A3E),
+           verde botânico (#4A6741), creme (#F5EDD6),
+           vermelho baga (#8B2E2E), dourado flor (#C9A84C)
+   Tipo: Playfair Display (display) + Inter (corpo)
+================================================ */
+
+/* -----------------------------------------------
+   1. RESET E TOKENS DE DESIGN
+----------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+    /* Paleta de cores */
+  --color-bg:           #f5efe4;           /* Fundo principal (areia clara) */
+  --color-bg-alt:       #ede4d4;           /* Fundo alternativo (mais escuro) */
+  --color-surface:      #faf6ef;           /* Superfície dos cards */
+  --color-header-alt:   #3d2b1f;           /* Header gradiente (marrom médio) */
+  --color-primary:      #5c8a3c;           /* Verde primário */
+  --color-primary-2:    #916B24;           /* marrom secundário */
+  --color-primary-dark: #3e6028;           /* Verde escuro (hover) */
+  --color-accent:       #b8763a;           /* Âmbar (destaque) */
+  --color-accent-light: #e6a05a;           /* Âmbar claro */
+  --color-text:         #2c1e0f;           /* Texto principal */
+  --color-text-muted:   #6b5740;           /* Texto secundário */
+  --color-border:       #c9b99a;           /* Bordas dos elementos */
+  --color-white:        #ffffff;
+  --color-tag-bg:       rgba(255,255,255,0.12);   /* Fundo chip inativo */
+  --color-tag-hover:    rgba(255,255,255,0.25);   /* Fundo chip hover */
+  --color-focus:        #f0c040;           /* Cor de foco (acessibilidade) */
+  --color-texto-filtro: #681C1C;           /* Vermelho escuro para texto de filtro */
+  --color-filtro:       #F7A965;          /* Laranja claro para fundo de filtro */
+  --color-filtro-hover: #D68035;          /* Laranja mais escuro para hover de filtro */
+  --color-header-alt:   #3d2b1f;           /* Header gradiente (marrom médio) */
+  --color-header:       #2e1f12;           /* Header / Footer (marrom escuro) */
+  --cor-fundo:       #E8DFC4; /* bege campo — cor base da imagem */
+  --cor-creme:       #F5EDD6; /* creme claro — seções alt */
+  --cor-musgo:       #6B5A3E; /* marrom musgo — cards escuros */
+  --cor-musgo-dark:  #4E4030; /* marrom escuro — hover cards */
+  --cor-verde:       #4A6741; /* verde botânico — acentos */
+  --cor-verde-light: #6A8F61; /* verde claro — tags */
+  --cor-baga:        #8B2E2E; /* vermelho baga — alertas */
+  --cor-ouro:        #C9A84C; /* dourado flor — destaques */
+  --cor-texto:       #2E2417; /* quase preto — texto principal */
+  --cor-texto-soft:  #5C4A2A; /* marrom suave — textos secundários */
+  --cor-branco:      #FDFAF4;
+
+  /* Raios de borda */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-full: 9999px;  /* Pill / circular */
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  32px;
+
+
+  /* Sombras */
+  --shadow-sm:   0 2px 8px  rgba(44,30,15,0.10);
+  --shadow-md:   0 6px 20px rgba(44,30,15,0.15);
+  --shadow-lg:   0 12px 40px rgba(44,30,15,0.20);
+  --shadow-card: 0 4px 16px rgba(44,30,15,0.12);
+  --shadow-sm: 0 2px 8px rgba(46, 36, 23, 0.10);
+  --shadow-md: 0 4px 20px rgba(46, 36, 23, 0.15);
+  --shadow-lg: 0 8px 40px rgba(46, 36, 23, 0.20);
+
+
+  /* Transições */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow:   0.5s ease;
+  --transition: 0.25s ease;
+
+  
+  /* Tipografia */
+  --font-display: 'Playfair Display', Georgia, serif;  /* Títulos e destaques */
+  --font-body:    'Inter', system-ui, sans-serif;       /* Corpo de texto */
+
+  /* Escala tipográfica */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  2rem;
+  --text-4xl:  2.75rem;
+  --text-5xl:  3.75rem;
+
+  /* Espaçamentos */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Foco acessível — visível em teclado */
+:focus-visible {
+  outline: 2px solid var(--cor-verde);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Redução de movimento para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ================================================================
+   4. HEADER — Cabeçalho fixo com logo, busca e ações
+================================================================ */
+header {
+  background: linear-gradient(135deg, var(--color-header) 0%, var(--color-header-alt) 100%);
+  position: sticky;    /* Fica fixo no topo ao rolar a página */
+  top: 0;
+  z-index: 1000;       /* Fica acima de outros elementos */
+  box-shadow: var(--shadow-lg);
+}
+/* Largura máxima e padding horizontal do conteúdo interno */
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+/* Linha superior: logo + busca + ações em linha */
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  z-index: 10
+  ;          /* Fica acima do background do header */
+}
+/* ---- Logo ---- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  flex-shrink: 0;       /* Não encolhe em telas menores */
+  z-index: 1;          /* Fica acima do canvas 3D no hero */
+}
+.logo-icon {
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 0.5px;
+}
+/* Usado no footer para manter cor branca */
+.footer-logo-name {
+  color: var(--color-white);
+}
+.logo-tagline {
+  font-size: 0.65rem;
+  color: var(--color-accent-light);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+/* ---- Barra de pesquisa ---- */
+.search-wrapper {
+  flex: 1;                /* Ocupa o espaço disponível */
+  max-width: 600px;
+  position: relative;
+}
+/* Grupo visual: input + botão com borda arredondada */
+.search-input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.13);
+  border: 1.5px solid rgba(255,255,255,0.20);
+  border-radius: var(--radius-full);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  overflow: hidden;
+}
+/* Destaque visual ao focar em qualquer elemento do grupo */
+.search-input-group:focus-within {
+  border-color: var(--color-accent-light);
+  background: rgba(255,255,255,0.20);
+  outline-offset: 2px;
+}
+.search-icon {
+  padding: 0 0.75rem 0 1rem;
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+  pointer-events: none;   /* Ícone não captura cliques */
+  flex-shrink: 0;
+}
+#search-input {
+  flex: 1;
+  padding: 0.6rem 0.5rem 0.6rem 0;
+  background: transparent;
+  border: none;
+  outline: none;          /* Foco gerenciado pelo pai (.search-input-group) */
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+#search-input::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+#search-btn {
+  padding: 0.55rem 1.1rem;
+  background: var(--color-primary);
+  border: none;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+#search-btn:hover { background: var(--color-primary-dark) ; }
+#search-btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+/* ---- Botões de ação (favoritos, conta, menu) ---- */
+.header-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(255,255,255,0.10);
+  border-radius: var(--radius-full);
+  color: var(--color-white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  text-decoration: none;
+}
+.icon-btn:hover {
+  background: rgba(255,255,255,0.22);
+  transform: scale(1.08);    /* Micro-animação de escala */
+}
+.icon-btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+.section--warn .icon-btn {
+  background: rgba(139, 46, 46, 0.10);
+  color: var(--cor-baga);
+}
+
+/* -----------------------------------------------
+   3. HERO — Modelo 3D + identidade
+----------------------------------------------- */
+
+/* Section que envolve o canvas 3D + crachá de texto */
+.hero-3d {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Container do canvas 3D — id usado por plantas3D.js.
+   Altura fixa em vez de 100vh: 100vh soma à altura do
+   header fixo e empurra o resto da página para fora da
+   tela em telas pequenas. */
+#container3D {
+  width: 100%;
+  height: 60vh;
+  min-height: 320px;
+  max-height: 640px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* O Three.js insere um <canvas> dentro do container —
+   este seletor garante que ele preencha o espaço todo */
+#container3D canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Estado de carregamento — plantas3D.js adiciona esta
+   classe ao container enquanto o .glb não termina de
+   carregar */
+#container3D.is-loading::after {
+  content: "Carregando modelo 3D…";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  color: var(--cor-texto-soft);
+}
+
+/* Estado de erro — caso o .glb não seja encontrado */
+#container3D.has-error::after {
+  content: "Não foi possível carregar o modelo 3D.";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  color: var(--cor-baga);
+  text-align: center;
+  padding: var(--space-4);
+}
+
+/* Crachá de identificação — posicionado sobre o canvas */
+.hero-badge {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-12) var(--space-6) var(--space-16);
+  max-width: 560px;
+  /* Gradiente para legibilidade sobre o 3D */
+  background: linear-gradient(
+    to top,
+    rgba(232, 223, 196, 0.96) 0%,
+    var(--cor-branco) 90%,
+    transparent 100%
+  );
+  width: 100%;
+  backdrop-filter: blur(4px);
+}
+
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cor-verde);
+  margin-bottom: var(--space-2);
+}
+
+/* H1 com fonte display — assinatura principal da página */
+#hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-4xl), 10vw, var(--text-5xl));
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--cor-texto);
+  margin-bottom: var(--space-2);
+}
+
+.hero-sci {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--cor-musgo);
+  margin-bottom: var(--space-3);
+}
+
+.hero-sub {
+  font-size: var(--text-sm);
+  color: var(--cor-texto-soft);
+  letter-spacing: 0.05em;
+}
+
+/* Indicador de scroll — animação pulsante */
+.scroll-hint {
+  position: absolute;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.scroll-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cor-verde);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.scroll-label {
+  font-size: var(--text-xs);
+  color: var(--cor-texto-soft);
+  letter-spacing: 0.08em;
+  writing-mode: vertical-rl;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.5); }
+}
+
+/* -----------------------------------------------
+   4. SEÇÕES — estrutura geral
+----------------------------------------------- */
+.section {
+  padding: var(--space-12) 0;
+}
+
+/* Seção de aviso — fundo levemente quente */
+.section--warn {
+  background: linear-gradient(
+    to bottom,
+    var(--cor-baga) 0%,
+    var(--cor-baga) 100%,
+    );
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  background: var(--cor-surface);
+}
+
+/* Cabeçalho de seção */
+.section-header {
+  margin-bottom: var(--space-12);
+  background: var(--cor-surface);
+  padding: var(--space-4) 0;
+  padding-left: var(--space-6);
+  z-index: 1;
+  position: relative;
+  
+}
+
+.section-tag {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cor-verde);
+  margin-bottom: var(--space-4);
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1.2;
+}
+
+.section-desc {
+  margin-top: var(--space-4);
+  font-size: var(--text-lg);
+  color: var(--cor-texto-soft);
+  max-width: 60ch;
+}
+
+/* -----------------------------------------------
+   5. CARDS — grid de identificação
+----------------------------------------------- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+/* Card largo ocupa 2 colunas */
+.card--wide {
+  grid-column: 1 / -1;
+}
+
+/* Card escuro — inspirado nos cards da imagem de referência */
+.card {
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card--dark {
+  background-color: var(--cor-musgo);
+  color: var(--cor-branco);
+}
+
+.card--dark:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-icon {
+  display: block;
+  font-size: 1.75rem;
+  margin-bottom: var(--space-4);
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  color: var(--cor-ouro);
+}
+
+.card p {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: rgba(253, 250, 244, 0.88);
+}
+
+/* Lista de definições dentro dos cards */
+.info-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.info-list dt {
+  font-weight: 600;
+  color: var(--cor-ouro);
+  white-space: nowrap;
+}
+
+.info-list dd {
+  color: rgba(253, 250, 244, 0.88);
+}
+
+/* Badge "nativa" */
+.badge-native {
+  display: inline-block;
+  background: var(--cor-verde);
+  color: var(--cor-branco);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 100px;
+}
+
+/* -----------------------------------------------
+   6. CULTIVO — faixa horizontal de itens
+----------------------------------------------- */
+.cultivo-strip {
+  display: flex;
+  gap: 0;
+  background: var(--cor-musgo);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: var(--space-12);
+}
+
+.cultivo-item {
+  flex: 1;
+  padding: var(--space-8) var(--space-6);
+  color: var(--cor-branco);
+  transition: background var(--transition);
+}
+
+.cultivo-item:hover {
+  background: var(--cor-musgo-dark);
+}
+
+.cultivo-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-3);
+}
+
+.cultivo-item h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--cor-ouro);
+  margin-bottom: var(--space-2);
+}
+
+.cultivo-item p {
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: rgba(253, 250, 244, 0.85);
+}
+
+/* Divisórias verticais entre itens */
+.cultivo-divider {
+  width: 1px;
+  background: rgba(253, 250, 244, 0.12);
+  flex-shrink: 0;
+}
+
+/* Partes usadas */
+.partes-usadas {
+  padding: var(--space-8);
+  background: var(--cor-musgo);
+  border-radius: var(--radius-lg);
+}
+
+.partes-usadas h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--cor-ouro);
+  margin-bottom: var(--space-6);
+}
+
+.partes-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.partes-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: rgba(253, 250, 244, 0.85);
+}
+
+/* Chips coloridos das partes da planta */
+.parte-chip {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.parte--flores { background: var(--cor-ouro); color: var(--cor-texto); }
+.parte--folhas { background: var(--cor-verde-light); color: var(--cor-branco); }
+.parte--caule  { background: var(--cor-musgo-dark); color: var(--cor-ouro); border: 1px solid var(--cor-ouro); }
+
+/* -----------------------------------------------
+   7. RECEITAS — tabs + painel
+----------------------------------------------- */
+.receitas-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: var(--space-3) var(--space-6);
+  border: 2px solid var(--cor-musgo);
+  border-radius: 100px;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--cor-musgo);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.tab-btn:hover {
+  background: var(--cor-musgo);
+  color: var(--cor-branco);
+}
+
+.tab-btn--active {
+  background: var(--cor-musgo);
+  color: var(--cor-branco);
+}
+
+/* Painel de receita */
+.receita-panel {
+  background: var(--cor-musgo);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  color: var(--cor-branco);
+}
+
+.receita-panel--hidden {
+  display: none;
+}
+
+.receita-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.receita-info h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--cor-ouro);
+  margin-bottom: var(--space-4);
+}
+
+.receita-desc {
+  font-size: var(--text-base);
+  color: rgba(253, 250, 244, 0.82);
+  margin-bottom: var(--space-6);
+  line-height: 1.7;
+}
+
+.ingredientes h4 {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-ouro);
+  margin-bottom: var(--space-3);
+}
+
+.ingredientes ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ingredientes li {
+  font-size: var(--text-sm);
+  color: rgba(253, 250, 244, 0.85);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.ingredientes li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--cor-ouro);
+  font-size: 1.2em;
+}
+
+/* Passos numerados */
+.passos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.passos li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.passo-num {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--cor-ouro);
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.passos strong {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--cor-branco);
+  margin-bottom: var(--space-1);
+}
+
+.passos p {
+  font-size: var(--text-sm);
+  color: rgba(253, 250, 244, 0.78);
+  line-height: 1.65;
+}
+
+/* -----------------------------------------------
+   8. BENEFÍCIOS
+----------------------------------------------- */
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+.beneficio-card {
+  background: var(--cor-musgo);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  color: var(--cor-branco);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.beneficio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  background: var(--cor-musgo-dark);
+}
+
+.bcard-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-4);
+}
+
+.beneficio-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--cor-ouro);
+  margin-bottom: var(--space-3);
+}
+
+.beneficio-card p {
+  font-size: var(--text-sm);
+  color: rgba(253, 250, 244, 0.82);
+  line-height: 1.65;
+}
+
+/* Compostos ativos */
+.compostos {
+  padding: var(--space-8);
+  background: var(--cor-musgo);
+  border-radius: var(--radius-lg);
+}
+
+.compostos h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--cor-ouro);
+  margin-bottom: var(--space-6);
+}
+
+.compostos-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.composto-tag {
+  background: rgba(253, 250, 244, 0.10);
+  border: 1px solid rgba(201, 168, 76, 0.50);
+  color: var(--cor-ouro);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-4);
+  border-radius: 100px;
+}
+
+/* -----------------------------------------------
+   9. PRECAUÇÕES
+----------------------------------------------- */
+.aviso-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  background: rgba(139, 46, 46, 0.10);
+  border: 1px solid rgba(139, 46, 46, 0.30);
+  border-left: 4px solid var(--cor-baga);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  margin-bottom: var(--space-12);
+}
+
+.aviso-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.aviso-banner p {
+  font-size: var(--text-base);
+  color: var(--cor-texto);
+  line-height: 1.65;
+}
+
+.prec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+/* Card de precaução — fundo escuro musgo */
+.prec-card {
+  background: #c44f4f;
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  color: var(--cor-branco);
+  border-top: 4px solid transparent;
+}
+
+/* Faixas de cor no topo indicam gravidade */
+.prec-card--red    { border-top-color: var(--cor-baga); }
+.prec-card--orange { border-top-color: rgb(251, 147, 0); }
+.prec-card--yellow { border-top-color: #dcbf00; }
+
+.prec-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-6);
+  color: var(--color-bg-alt);
+}
+
+.prec-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.prec-card li {
+  font-size: var(--text-sm);
+  color: rgba(253, 250, 244, 0.85);
+  line-height: 1.65;
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.prec-card li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--cor-baga);
+  font-size: 0.8em;
+}
+
+.prec-card strong {
+  color: var(--cor-branco);
+  font-weight: 600;
+}
+
+/* -----------------------------------------------
+   10. FOOTER
+----------------------------------------------- */
+footer {
+  background: var(--color-header);
+  color: rgba(255,255,255,0.7);
+  padding: 2.5rem 1.5rem;
+  margin-top: 3rem;
+}
+/* Grid de colunas do footer */
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+}
+.footer-col ul {
+  list-style: none;
+}
+.footer-col ul li + li {
+  margin-top: 0.4rem;
+}
+.footer-col a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.83rem;
+  transition: color var(--transition-fast);
+}
+.footer-col a:hover {
+  color: var(--color-accent-light);
+}
+.footer-col a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+/* Barra inferior do footer */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 1.75rem auto 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+}
+/* -----------------------------------------------
+   11. ANIMAÇÕES DE ENTRADA (scroll-reveal)
+----------------------------------------------- */
+/* Estado inicial — elementos invisíveis antes de entrar na tela */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Delay escalonado para grids */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* -----------------------------------------------
+   12. RESPONSIVIDADE — breakpoints
+----------------------------------------------- */
+
+/* ── Tablet (≤900px) ── */
+@media (max-width: 900px) {
+
+  .nav-list { display: none; }
+  .nav-toggle { display: flex; }
+
+  /* Menu mobile — dropdown */
+  .nav-list.nav-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--cor-fundo);
+    border-bottom: 1px solid rgba(107, 90, 62, 0.20);
+    padding: var(--space-4) var(--space-6) var(--space-6);
+    gap: var(--space-4);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* 2 → 1 coluna nos cards de identificação */
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Cultivo em coluna */
+  .cultivo-strip {
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+  }
+
+  .cultivo-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  /* Receita em coluna */
+  .receita-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  /* Benefícios 2 colunas */
+  .beneficios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Precauções em coluna */
+  .prec-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Mobile (≤600px) ── */
+@media (max-width: 600px) {
+
+  .section {
+    padding: var(--space-16) 0;
+  }
+
+  .section-inner {
+    padding: 0 var(--space-4);
+  }
+
+  .hero-badge {
+    padding: var(--space-8) var(--space-4) var(--space-12);
+  }
+
+  /* 1 coluna nos benefícios */
+  .beneficios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tabs quebram linha */
+  .receitas-tabs {
+    gap: var(--space-2);
+  }
+
+  .tab-btn {
+    font-size: var(--text-xs);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  /* Passos sem grid */
+  .passos li {
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-3);
+  }
+
+  .passo-num {
+    font-size: var(--text-xl);
+  }
+}

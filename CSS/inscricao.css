@@ -1,0 +1,369 @@
+/* =========================================================
+   INSCREVA-SE — Jardim das Plantas
+   inscricao.css
+
+   Mesma paleta e tipografia da página "Marcela":
+   --sand:    #E8D9B5  (fundo bege areia)
+   --bark:    #8B6914  (marrom dourado — botão principal)
+   --bark-dk: #6B4F0E  (marrom escuro — bordas, hover)
+   --cream:   #F5EDD6  (texto claro)
+   --amber:   #C8860A  (âmbar — foco, destaques)
+   --ink:     #2C1F0A  (texto principal)
+   --line:    #8B6914  (linha dos campos, como na imagem)
+   ========================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --sand:     #E8D9B5;
+  --bark:     #8B6914;
+  --bark-dk:  #6B4F0E;
+  --cream:    #F5EDD6;
+  --amber:    #C8860A;
+  --ink:      #2C1F0A;
+  --error:    #B93F1B;
+  --success:  #3A5C2E;
+  --radius:   100px;   /* campos e botão totalmente arredondados, como na imagem */
+  --max-w:    420px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--sand);
+  color: var(--ink);
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* Foco acessível via teclado */
+:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ==========================================================
+   LAYOUT GERAL
+   ========================================================== */
+.page {
+  width: 100%;
+  max-width: var(--max-w);
+  padding: 2.5rem 1.75rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================
+   ILUSTRAÇÃO PRINCIPAL
+   ========================================================== */
+.hero-image {
+  width: min(260px, 70vw);
+  height: min(260px, 70vw);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-12px) scale(0.96);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero-image.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero-image__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(44, 31, 10, 0.25));
+}
+
+/* ==========================================================
+   CABEÇALHO DE TEXTO
+   ========================================================== */
+.page__header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.page__title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 7vw, 2.4rem);
+  color: var(--bark-dk);
+  margin-bottom: 0.5rem;
+}
+
+.page__subtitle {
+  font-size: 0.88rem;
+  color: rgba(44, 31, 10, 0.65);
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* ==========================================================
+   FORMULÁRIO
+   ========================================================== */
+.signup-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ── Campo individual ── */
+.field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.field__label {
+  position: absolute;
+  left: 1.4rem;
+  top: 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bark);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+/* Mostra o rótulo flutuante quando o campo tem foco ou conteúdo */
+.field__input:focus ~ .field__label,
+.field__input:not(:placeholder-shown) ~ .field__label {
+  opacity: 1;
+}
+
+/* Empurra o texto digitado para baixo quando o rótulo aparece em cima */
+.field__input:focus,
+.field__input:not(:placeholder-shown) {
+  padding-top: 1.35rem;
+  padding-bottom: 0.45rem;
+}
+
+/* Input estilo "pílula" com contorno, como na imagem de referência */
+.field__input {
+  width: 100%;
+  background-color: var(--sand);
+  border: 1.5px solid var(--bark);
+  border-radius: var(--radius);
+  padding: 0.95rem 1.4rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.92rem;
+  color: var(--ink);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, padding 0.2s ease;
+}
+
+.field__input::placeholder {
+  color: rgba(44, 31, 10, 0.45);
+  font-weight: 400;
+}
+
+.field__input:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(200, 134, 10, 0.18);
+}
+
+/* Estado de erro */
+.field__input.has-error {
+  border-color: var(--error);
+}
+.field__input.has-error:focus {
+  box-shadow: 0 0 0 3px rgba(185, 63, 27, 0.18);
+}
+
+/* Estado de sucesso (validado) */
+.field__input.is-valid {
+  border-color: var(--success);
+}
+
+/* Dica de senha */
+.field__hint {
+  font-size: 0.72rem;
+  color: rgba(44, 31, 10, 0.5);
+  margin: 0.35rem 0 0 1.4rem;
+}
+
+/* Mensagem de erro */
+.field__error {
+  font-size: 0.75rem;
+  color: var(--error);
+  margin: 0.35rem 0 0 1.4rem;
+  min-height: 1em;
+  display: block;
+}
+
+/* ── Wrapper do campo de senha (com botão de mostrar/ocultar) ── */
+.field__password-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field__password-wrap .field__input {
+  padding-right: 3rem;
+}
+
+.field__toggle-visibility {
+  position: absolute;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.4rem;
+  color: var(--bark);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.field__toggle-visibility:hover {
+  opacity: 1;
+}
+
+/* ==========================================================
+   BOTÃO DE ENVIO
+   ========================================================== */
+.btn-submit {
+  position: relative;
+  width: 100%;
+  background-color: var(--bark);
+  color: var(--cream);
+  border: none;
+  border-radius: var(--radius);
+  padding: 1.05rem 1.5rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 0 var(--bark-dk), 0 8px 20px rgba(44,31,10,.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.btn-submit:hover {
+  background-color: var(--bark-dk);
+}
+
+.btn-submit:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--bark-dk), 0 4px 12px rgba(44,31,10,.2);
+}
+
+.btn-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* Spinner de carregamento (escondido por padrão) */
+.btn-submit__spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(245,237,214,0.35);
+  border-top-color: var(--cream);
+  border-radius: 50%;
+}
+
+.btn-submit.is-loading .btn-submit__spinner {
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+.btn-submit.is-loading .btn-submit__text {
+  opacity: 0.85;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================
+   MENSAGEM DE SUCESSO
+   ========================================================== */
+.form-success {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--success);
+  min-height: 1.2em;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.form-success.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variante de erro da mensagem (usada no login quando credenciais falham) */
+.form-success.is-error {
+  color: var(--error);
+}
+
+/* Link "Ainda não tem conta? / Já tem conta?" — usado em login.html e inscricao.html */
+.form-switch {
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(44, 31, 10, 0.65);
+  margin-top: 0.5rem;
+}
+.form-switch a {
+  color: var(--bark-dk);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(139, 105, 20, 0.4);
+}
+.form-switch a:hover {
+  color: var(--amber);
+}
+
+/* ==========================================================
+   RESPONSIVIDADE
+   ========================================================== */
+@media (max-width: 380px) {
+  .page {
+    padding: 2rem 1.25rem 2.5rem;
+  }
+  .page__title {
+    font-size: 1.7rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .page {
+    padding-top: 4rem;
+  }
+}
+
+/* ==========================================================
+   REDUÇÃO DE MOVIMENTO (acessibilidade)
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
